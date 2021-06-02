@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Menu from '../../components/Menu';
 import ProductCard from '../../components/ProductCard';
 
+
 import img1 from '../../images/cadeira-gamer.jpg'
 import img2 from '../../images/cooler1.jpg'
 import img3 from '../../images/teclado.jpg'

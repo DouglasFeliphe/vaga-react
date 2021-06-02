@@ -3,6 +3,7 @@ import Menu from '../../components/Menu'
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import StarIcon from '@material-ui/icons/Star'
 
 import img1 from '../../images/cadeira-gamer.jpg'
 
@@ -26,6 +27,7 @@ function ProductDetail() {
           flexDirection='column'
           width={500}
           height={300}
+          ml={5}
         >
           <div >
             <h1>Titulo</h1>
@@ -36,6 +38,14 @@ function ProductDetail() {
               Blanditiis, eius?
             </p>
           </div>
+
+          <Box>
+            <StarIcon color='secondary' />
+            <StarIcon color='secondary' />
+            <StarIcon color='secondary' />
+            <StarIcon color='secondary' />
+            <StarIcon color='disabled' />
+          </Box>
 
           <Button
             style={{ marginTop: 'auto', marginLeft: 'auto' }}
