@@ -97,18 +97,22 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
 - Testes Funcionais
  
 ## Backlog:
-- [] componente Menu
-- [] componente Produto
-- [] componente Botão
-- [] componente Input
+- [ ] componente Menu
+- [ ] componente Produto
+- [ ] componente Botão
+- [ ] componente Input
 
-- [] Página de produtos 
-    - [] modo lista
-    - [] modo cards
-    - [] filtros
-- [] Página de Login(Modal)
-- [] Página de Checkout 
-- [] Página de Pagamento
-- [] Página de Confirmação de pagamento
+- [ ] Página de produtos 
+    - [ ] modo lista
+    - [ ] modo cards
+    - [ ] filtros
+- [ ] Página de exibir produto
+    - [ ] Fotos do Produto
+    - [ ] Descrição
+    - [ ] Avaliações     
+- [ ] Página de Login(Modal)
+- [ ] Página de Checkout 
+- [ ] Página de Pagamento
+- [ ] Página de Confirmação de pagamento
 
-- [] Listagem
+- [ ] Listagem
