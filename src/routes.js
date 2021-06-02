@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Products from './pages/Products'
@@ -9,7 +9,7 @@ import Payment from './pages/Payment';
 import Confirm from './pages/Confirm';
 import Error from './pages/Error'
 
-function Routes() {
+const Routes = () => {
     return (
         <BrowserRouter>
             <Switch>
