@@ -109,7 +109,8 @@ export default function BasicTable() {
 
                                 </TableCell>
                                 <TableCell align='center'></TableCell>
-                                <TableCell align='right'>Total: R$300.00</TableCell>
+
+                                <TableCell align='right'><strong> Total: R$300.00</strong></TableCell>
                                 <TableCell >
                                     <Button
                                         variant="contained"
@@ -117,7 +118,7 @@ export default function BasicTable() {
                                         startIcon={<DeleteIcon />}
                                     >
                                         Finalizar Compra
-                                </Button>
+                                    </Button>
                                 </TableCell>
                             </TableRow>
                         </TableBody>
