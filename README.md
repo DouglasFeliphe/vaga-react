@@ -113,6 +113,9 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
 - [ ] Página de Login(Modal)
 - [ ] Página de Checkout 
 - [ ] Página de Pagamento
+    - [ ] input de cidade
+    - [ ] input de estado
+    - [ ] validação
 - [ ] Página de Confirmação de pagamento
 
 - [ ] Listagem

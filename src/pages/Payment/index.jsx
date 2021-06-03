@@ -40,15 +40,12 @@ function Payment() {
                 mx={11}
                 my={5}
             >
-                <Box
-                    width={1000}
-                    px={11}
-                >
-                    <h1>Finalizar compra</h1>
+                <Box px={22}  >
+                    <Box fontSize='h3.fontSize' >Finalizar compra</Box>
 
-                    <Typography variant="h5" component="h2" >
+                    <Box fontSize='h6.fontSize' mb={5} >
                         Detalhes de faturamento
-                    </Typography>
+                    </Box>
 
                     <form noValidate autoComplete="off" >
                         <Box display='flex'>
@@ -144,7 +141,7 @@ function Payment() {
                 <Box
                     display='flex'
                     flexDirection='column'
-                    // justifyContent='space-evenly'
+                    width={700}
                     height={700}
                 >
                     <h3>Seu pedido</h3>
@@ -162,7 +159,11 @@ function Payment() {
                                         <TableCell component="th" scope="row">
                                             {row.name}
                                         </TableCell>
-                                        <TableCell ><b>R$ {row.price}</b></TableCell>
+                                        <TableCell >
+                                            <Box color='success.main' fontWeight={500}>
+                                                R${row.price}
+                                            </Box>
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
