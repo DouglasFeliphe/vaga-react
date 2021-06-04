@@ -5,8 +5,8 @@ export const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
         width: 345,
-        margin: 22,
-        padding: 33,
+        marginBottom: 33,
+        padding: 44,
         textAlign: 'center',
         justifyContent: 'center'
     },
