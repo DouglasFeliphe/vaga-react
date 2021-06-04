@@ -135,10 +135,9 @@ export default function PrimarySearchAppBar() {
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <Link to='/checkout'>
+                        <Link to='/'>
                             <IconButton aria-label="show 4 new mails" color="inherit">
                                 Produtos
-                                {/* <ShoppingCart /> */}
                             </IconButton>
                         </Link>
                         <Link to='/checkout'>

@@ -1,45 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
+import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Box from '@material-ui/core/Box'
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+import Rating from '@material-ui/lab/Rating';
+
 
 import { useStyles } from './styles'
 
-
-function ProductCard(props) {
+function ProductCard({ title, subHeader, image, ratingValue }) {
 
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
-
+    
     return (
         <Card className={classes.root}>
             <CardMedia
                 className={classes.media}
-                image={props.image}
+                image={image}
                 title="Paella dish"
             />
 
             <CardHeader
-                title="Cadeira Gamer"
-                subheader="lorem ipsum sidum ortmet"
+                title={title}
+                subheader={subHeader}
             />
 
             {/* <CardContent>
@@ -49,13 +38,15 @@ function ProductCard(props) {
                 </Typography>
             </CardContent> */}
 
+            <Box component="fieldset" mb={3} borderColor="transparent">
+                <Typography component="legend">Avaliação</Typography>
+                <Rating name="read-only" value={ratingValue} readOnly />
+            </Box>
+
             <Box display='flex' justifyContent="space-around">
                 <CardActions >
-                    <IconButton aria-label="add to favorites">
-                        <FavoriteIcon color='secondary' />
-                    </IconButton>
                     <Button variant="contained" color="primary" href="#contained-buttons">
-                        Add To Cart
+                        INSERIR NO CARRINHO
                     </Button>
                 </CardActions>
             </Box>
@@ -64,7 +55,10 @@ function ProductCard(props) {
 }
 
 ProductCard.propTypes = {
-    image: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    subHeader: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    ratingValue: PropTypes.number.isRequired
 };
 
 export default ProductCard

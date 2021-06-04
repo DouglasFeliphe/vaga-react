@@ -12,30 +12,61 @@ import img4 from '../../images/watercooler.jpg'
 
 import { useStyles } from './styles'
 
+const products = [
+    {
+        title: "Watercooler Gamer",
+        subHeader: "lorem ipsum lorem ipsum",
+        image: img4,
+        ratingValue: 2
+    },
+    {
+        title: "Cadeira Gamer",
+        subHeader: "lorem ipsum lorem ipsum",
+        image: img1,
+        ratingValue: 2
+    },
+    {
+        title: "Cooler Gamer",
+        subHeader: "lorem ipsum lorem ipsum",
+        image: img2,
+        ratingValue: 2
+    },
+    {
+        title: "Teclado Gamer",
+        subHeader: "lorem ipsum lorem ipsum",
+        image: img3,
+        ratingValue: 2
+    },
+
+]
+
 function Products() {
 
     const classes = useStyles();
 
     return (
         <>
-            <Menu></Menu>
+            <Menu />
             <Box
                 className={classes.section}
                 display="flex"
                 justifyContent='space-around'
-                m={2}
+                m={3}
             >
-                <Link to='product_detail'>
-                    <ProductCard
-                        image={img4}
-                    />
-                </Link>
-                <ProductCard image={img3} />
-                <ProductCard image={img2} />
-                <ProductCard image={img1} />
+                {renderProducts}
             </Box>
         </>
     )
 }
+
+const renderProducts = products.map(product => (
+    <Link to='product_detail'>
+        <ProductCard
+            title={product.title}
+            subHeader={product.subHeader}
+            image={product.image}
+            ratingValue={product.ratingValue} />
+    </Link>
+));
 
 export default Products;

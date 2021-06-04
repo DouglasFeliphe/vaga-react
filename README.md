@@ -106,6 +106,7 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
     - [ ] modo lista
     - [ ] modo cards
     - [ ] filtros
+    - [ ] 4 produtos por linha
 - [ ] Página de exibir produto
     - [ ] Fotos do Produto
     - [ ] Descrição
