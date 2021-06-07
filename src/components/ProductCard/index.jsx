@@ -11,15 +11,17 @@ import Box from '@material-ui/core/Box'
 
 import Rating from '@material-ui/lab/Rating';
 
-
 import { useStyles } from './styles'
 
-function ProductCard({ title, subHeader, image, ratingValue }) {
+function ProductCard({ title, subHeader, image, ratingValue, onClick }) {
 
     const classes = useStyles();
-    
+
     return (
-        <Card className={classes.root}>
+        <Card
+            className={classes.root}
+            onClick={onClick}
+        >
             <CardMedia
                 className={classes.media}
                 image={image}

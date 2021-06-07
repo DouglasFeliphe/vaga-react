@@ -13,11 +13,11 @@ const Routes = () => {
     return (
         <BrowserRouter>
             <Switch>
+                <Route path='/products/:id'>
+                    <ProductDetail />
+                </Route>
                 <Route path='/' exact >
                     <Products />
-                </Route>
-                <Route path='/product_detail'>
-                    <ProductDetail />
                 </Route>
                 <Route path='/login' >
                     <Login />

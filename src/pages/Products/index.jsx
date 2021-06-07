@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { generatePath, useHistory } from 'react-router-dom'
 import Box from '@material-ui/core/Box';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Menu from '../../components/Menu';
 import ProductCard from '../../components/ProductCard';
 
@@ -14,24 +13,28 @@ import { useStyles } from './styles'
 
 const products = [
     {
+        id: 1,
         title: "Watercooler Gamer",
         subHeader: "lorem ipsum lorem ipsum",
         image: img4,
         ratingValue: 2
     },
     {
+        id: 2,
         title: "Cadeira Gamer",
         subHeader: "lorem ipsum lorem ipsum",
         image: img1,
         ratingValue: 2
     },
     {
+        id: 3,
         title: "Cooler Gamer",
         subHeader: "lorem ipsum lorem ipsum",
         image: img2,
         ratingValue: 2
     },
     {
+        id: 4,
         title: "Teclado Gamer",
         subHeader: "lorem ipsum lorem ipsum",
         image: img3,
@@ -42,7 +45,21 @@ const products = [
 
 function Products() {
 
-    const classes = useStyles();
+    const classes = useStyles()
+    const history = useHistory()
+
+
+    function handleClickProduct(id, image, title, description, ratingValue) {
+        history.push(
+            generatePath(`/products/:id`, { id }),
+            {  // location state
+                image,
+                title,
+                description,
+                ratingValue
+            },
+        )
+    }
 
     return (
         <>
@@ -53,20 +70,30 @@ function Products() {
                 justifyContent='space-around'
                 m={3}
             >
-                {renderProducts}
+                {products.map(product => (
+                    <ProductCard
+                        key={product.id}
+                        title={product.title}
+                        subHeader={product.subHeader}
+                        image={product.image}
+                        ratingValue={product.ratingValue}
+                        onClick={
+                            () => handleClickProduct(
+                                product.id,
+                                product.image,
+                                product.title,
+                                product.subHeader,
+                                product.ratingValue
+                            )}
+                    />
+                ))}
             </Box>
         </>
     )
 }
 
-const renderProducts = products.map(product => (
-    <Link to='product_detail'>
-        <ProductCard
-            title={product.title}
-            subHeader={product.subHeader}
-            image={product.image}
-            ratingValue={product.ratingValue} />
-    </Link>
-));
+
+
+
 
 export default Products;
