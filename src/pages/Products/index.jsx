@@ -1,8 +1,14 @@
-import React from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { generatePath, useHistory } from 'react-router-dom'
+
 import Box from '@material-ui/core/Box';
+import List from '@material-ui/core/List';
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Switch from '@material-ui/core/Switch';
 import Menu from '../../components/Menu';
-import ProductCard from '../../components/ProductCard';
+import ProductItemCard from '../../components/ProductItemCard';
+import ProductItemList from '../../components/ProductItemList';
 
 import img1 from '../../images/cadeira-gamer.jpg'
 import img2 from '../../images/cooler1.jpg'
@@ -47,10 +53,25 @@ const products = [
 
 ]
 
+const renderProductsWithListMod = (product, handleClickProduct) => (
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+
+    </List>
+)
+
+const renderProductsWithCardMod = (product, handleClickProduct) => (
+    <></>
+)
+
 function Products() {
 
     const classes = useStyles()
     const history = useHistory()
+
+    const [loading, setLoading] = useState(false);
+    const label = 'Modo Lista'
+
+
 
 
     function handleClickProduct(id, image, title, description, price, ratingValue) {
@@ -69,22 +90,43 @@ function Products() {
     return (
         <>
             <Menu />
+            <FormControlLabel
+
+                sx={{
+                    display: 'block',
+                    margin: 22
+                }}
+                control={
+                    <Switch
+                        checked={loading}
+                        onChange={() => setLoading(!loading)}
+                        name="modo"
+                        color="primary"
+                    />
+                }
+                label='Mudar Visualização'
+            />
+
+
             <Box
                 className={classes.section}
                 display="flex"
+                flexWrap='wrap'
+                // flexDirection='column'
                 justifyContent='space-around'
                 m={3}
             >
-                {products.map(product => (
-                    <ProductCard
-                        key={product.id}
-                        title={product.title}
-                        subHeader={product.subHeader}
-                        price={product.price}
-                        image={product.image}
-                        ratingValue={product.ratingValue}
-                        onClick={
-                            () => handleClickProduct(
+
+                {products.map(product =>
+                    loading ?
+                        <ProductItemCard
+                            key={product.id}
+                            title={product.title}
+                            subHeader={product.subHeader}
+                            price={product.price}
+                            image={product.image}
+                            ratingValue={product.ratingValue}
+                            onClick={() => handleClickProduct(
                                 product.id,
                                 product.image,
                                 product.title,
@@ -92,8 +134,27 @@ function Products() {
                                 product.price,
                                 product.ratingValue
                             )}
-                    />
-                ))}
+                        />
+                        :
+                        <ProductItemList
+                            key={product.id}
+                            title={product.title}
+                            subHeader={product.subHeader}
+                            price={product.price}
+                            image={product.image}
+                            ratingValue={product.ratingValue}
+                            onClick={() => handleClickProduct(
+                                product.id,
+                                product.image,
+                                product.title,
+                                product.subHeader,
+                                product.price,
+                                product.ratingValue
+                            )}
+                        />
+                )}
+
+
             </Box>
         </>
     )
