@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Menu from '../../components/Menu'
+import PriceLabel from '../../components/PriceLabel';
+import RatingLabel from '../../components/RatingLabel';
 import ButtonAction from '../../components/ButtonAction'
+
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography'
-
-import Rating from '@material-ui/lab/Rating';
 
 import { ShoppingCart } from '@material-ui/icons';
-
 
 
 
@@ -18,7 +17,7 @@ function ProductDetail() {
 
   const location = useLocation();
 
-  const { image, title, description, ratingValue } = location.state
+  const { image, title, description, price, ratingValue } = location.state
 
   return (
     <>
@@ -38,7 +37,6 @@ function ProductDetail() {
           justifyContent='space-around'
           flexDirection='column'
           width={500}
-          height={300}
           ml={5}
         >
 
@@ -48,20 +46,13 @@ function ProductDetail() {
             {description}
           </p>
 
+          <PriceLabel value={price} />
 
+          <RatingLabel title="Avaliação" value={ratingValue} />
 
-          <Box component="fieldset" mb={3} borderColor="transparent">
-            <Typography component="legend">Avaliação</Typography>
-            <Rating name="read-only" value={ratingValue} readOnly />
-          </Box>
-
-
-          <ButtonAction
-
-          />
+          <ButtonAction label='Quantidade' />
 
           <Button
-            // style={{ marginTop: 'auto', marginLeft: 'auto' }}
             variant="contained"
             color="secondary"
             startIcon={<ShoppingCart />}

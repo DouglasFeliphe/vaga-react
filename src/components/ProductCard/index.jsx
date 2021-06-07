@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Typography from '@material-ui/core/Typography'
+
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -10,7 +10,8 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
 
-import Rating from '@material-ui/lab/Rating';
+import PriceLabel from '../PriceLabel';
+import RatingLabel from '../RatingLabel';
 
 import { useStyles } from './styles'
 
@@ -35,20 +36,10 @@ function ProductCard({ image, title, subHeader, price, ratingValue, onClick }) {
             />
 
             <CardContent>
-                <Typography className={classes.textPrice}
-                    variant='h5'
-                    component='strong'
-                >
-                    R${price}
-                    {/* This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like. */}
-                </Typography>
+                <PriceLabel value={price} />
             </CardContent>
 
-            <Box component="fieldset" mb={3} borderColor="transparent">
-                <Typography component="legend">Avaliação</Typography>
-                <Rating name="read-only" value={ratingValue} readOnly />
-            </Box>
+            <RatingLabel title='Avaliação' value={ratingValue} />
 
             <Box display='flex' justifyContent="space-around">
                 <CardActions >

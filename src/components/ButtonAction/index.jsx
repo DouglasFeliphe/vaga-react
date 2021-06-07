@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-function ButtonAction() {
+function ButtonAction({ label }) {
 
     const [count, setCount] = useState(0);
 
@@ -19,8 +19,11 @@ function ButtonAction() {
             alignItems='center'
             my={5}
         >
-
             <Typography>
+                {label}
+            </Typography>
+
+            <Typography variant="h6" gutterBottom component="span">
                 {count}
             </Typography>
 
@@ -45,5 +48,9 @@ function ButtonAction() {
         </Box>
     )
 }
+
+ButtonAction.propTypes = {
+    label: PropTypes.string.isRequired,
+};
 
 export default ButtonAction;

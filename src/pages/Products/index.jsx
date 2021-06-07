@@ -53,13 +53,14 @@ function Products() {
     const history = useHistory()
 
 
-    function handleClickProduct(id, image, title, description, ratingValue) {
+    function handleClickProduct(id, image, title, description, price, ratingValue) {
         history.push(
             generatePath(`/products/:id`, { id }),
             {  // location state
                 image,
                 title,
                 description,
+                price,
                 ratingValue
             },
         )
@@ -88,6 +89,7 @@ function Products() {
                                 product.image,
                                 product.title,
                                 product.subHeader,
+                                product.price,
                                 product.ratingValue
                             )}
                     />
