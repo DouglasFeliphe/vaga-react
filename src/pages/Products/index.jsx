@@ -16,6 +16,7 @@ const products = [
         id: 1,
         title: "Watercooler Gamer",
         subHeader: "lorem ipsum lorem ipsum",
+        price: 300.00,
         image: img4,
         ratingValue: 2
     },
@@ -23,6 +24,7 @@ const products = [
         id: 2,
         title: "Cadeira Gamer",
         subHeader: "lorem ipsum lorem ipsum",
+        price: 300.00,
         image: img1,
         ratingValue: 2
     },
@@ -30,6 +32,7 @@ const products = [
         id: 3,
         title: "Cooler Gamer",
         subHeader: "lorem ipsum lorem ipsum",
+        price: 300.00,
         image: img2,
         ratingValue: 2
     },
@@ -37,6 +40,7 @@ const products = [
         id: 4,
         title: "Teclado Gamer",
         subHeader: "lorem ipsum lorem ipsum",
+        price: 300.00,
         image: img3,
         ratingValue: 2
     },
@@ -75,6 +79,7 @@ function Products() {
                         key={product.id}
                         title={product.title}
                         subHeader={product.subHeader}
+                        price={product.price}
                         image={product.image}
                         ratingValue={product.ratingValue}
                         onClick={

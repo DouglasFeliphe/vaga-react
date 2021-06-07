@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
@@ -13,7 +14,7 @@ import Rating from '@material-ui/lab/Rating';
 
 import { useStyles } from './styles'
 
-function ProductCard({ title, subHeader, image, ratingValue, onClick }) {
+function ProductCard({ image, title, subHeader, price, ratingValue, onClick }) {
 
     const classes = useStyles();
 
@@ -33,12 +34,16 @@ function ProductCard({ title, subHeader, image, ratingValue, onClick }) {
                 subheader={subHeader}
             />
 
-            {/* <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
+            <CardContent>
+                <Typography className={classes.textPrice}
+                    variant='h5'
+                    component='strong'
+                >
+                    R${price}
+                    {/* This impressive paella is a perfect party dish and a fun meal to cook together with your
+                    guests. Add 1 cup of frozen peas along with the mussels, if you like. */}
                 </Typography>
-            </CardContent> */}
+            </CardContent>
 
             <Box component="fieldset" mb={3} borderColor="transparent">
                 <Typography component="legend">Avaliação</Typography>
