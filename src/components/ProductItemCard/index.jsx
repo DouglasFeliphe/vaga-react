@@ -44,7 +44,7 @@ function ProductCard({ image, title, subHeader, price, ratingValue, onClick }) {
             <Box display='flex' justifyContent="space-around">
                 <CardActions >
                     <Button variant="contained" color="primary" href="#contained-buttons">
-                        INSERIR NO CARRINHO
+                        Conferir
                     </Button>
                 </CardActions>
             </Box>

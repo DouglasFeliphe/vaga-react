@@ -91,7 +91,6 @@ function Products() {
         <>
             <Menu />
             <FormControlLabel
-
                 sx={{
                     display: 'block',
                     margin: 22
@@ -112,8 +111,8 @@ function Products() {
                 className={classes.section}
                 display="flex"
                 flexWrap='wrap'
-                // flexDirection='column'
                 justifyContent='space-around'
+                alignItems='center'
                 m={3}
             >
 
