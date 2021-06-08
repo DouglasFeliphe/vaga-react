@@ -120,3 +120,6 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
 - [ ] Página de Confirmação de pagamento
 
 - [ ] Listagem
+
+### bugs
+- [ ] Expected "id" to be defined - Erro ao clicar no produto em modo tabela

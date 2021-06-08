@@ -1,17 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles';
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import Slider from '@material-ui/core/Slider';
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { Box, Paper, IconButton, Slider } from '@material-ui/core'
 import PriceLabel from '../PriceLabel'
 import ButtonAction from '../ButtonAction'
 
@@ -32,10 +24,10 @@ const renderTableColumns = (columns) => (
     </TableRow>
 )
 
-const renderTableRows = (rows) => (
+const renderTableRows = (rows, onClick) => (
     <>
         {rows.map((row) => (
-            <TableRow key={row.id}>
+            <TableRow key={row.id} onClick={onClick}>
                 <TableCell component="th" scope="row">
                     <strong>{row.title}</strong>
                 </TableCell>
@@ -65,14 +57,17 @@ const renderTableRows = (rows) => (
     </>
 )
 
-export default function BasicTable({ columns, rows, ActionContent }) {
+function TableProducts({ title, columns, rows, onClick, ActionContent }) {
     const classes = useStyles();
 
     return (
         <>
-            <Box fontSize='h3.fontSize' mx={15}>
-                Checkout
-            </Box>
+            {title &&
+                <Box fontSize='h3.fontSize' mx={15}>
+                    {title}
+                </Box>
+            }
+
             <Box mx={15} >
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
@@ -80,7 +75,7 @@ export default function BasicTable({ columns, rows, ActionContent }) {
                             {columns && renderTableColumns(columns)}
                         </TableHead>
                         <TableBody>
-                            {renderTableRows(rows)}
+                            {renderTableRows(rows, onClick)}
                             {ActionContent}
                         </TableBody>
                     </Table>
@@ -89,3 +84,13 @@ export default function BasicTable({ columns, rows, ActionContent }) {
         </>
     );
 }
+
+TableProducts.propTypes = {
+    title: PropTypes.string,
+    columns: PropTypes.array,
+    rows: PropTypes.object.isRequired,
+    onClick: PropTypes.func,
+    ActionContent: PropTypes.object,
+};
+
+export default TableProducts

@@ -1,6 +1,6 @@
 import React from 'react';
 import Menu from '../../components/Menu'
-import Table from '../../components/Table'
+import TableProducts from '../../components/TableProducts'
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button'
@@ -21,7 +21,8 @@ function Checkout() {
     return (
         <>
             <Menu />
-            <Table
+            <TableProducts
+                title='Checkout'
                 columns={columns}
                 rows={productsMock}
                 ActionContent={

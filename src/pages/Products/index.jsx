@@ -2,25 +2,42 @@ import * as React from 'react';
 import { useState } from 'react';
 import { generatePath, useHistory } from 'react-router-dom'
 
-import Box from '@material-ui/core/Box';
-import List from '@material-ui/core/List';
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch';
+import { Box, Switch, FormControlLabel } from '@material-ui/core';
 import Menu from '../../components/Menu';
+import TableProducts from '../../components/TableProducts';
 import ProductItemCard from '../../components/ProductItemCard';
-import ProductItemList from '../../components/ProductItemList';
-
 import { useStyles } from './styles'
-
 import { productsMock } from '../../mock/products'
 
-const renderProductsWithListMod = (product, handleClickProduct) => (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-    </List>
+
+
+const renderProductWithCard = (classes, handleClickProduct) => (
+    <Box
+        className={classes.section}
+        display='flex'
+        justifyContent='space-around'
+        m={3}
+    >
+        {productsMock.map(product => (
+            <ProductItemCard
+                key={product.id}
+                title={product.title}
+                subHeader={product.subHeader}
+                price={product.price}
+                image={product.image}
+                ratingValue={product.ratingValue}
+                onClick={
+                    () => handleClickProduct(product)
+                }
+            />
+        ))}
+    </Box>
 )
 
-const renderProductsWithCardMod = (product, handleClickProduct) => (
-    <></>
+const renderProductWithList = (classes, handleClickProduct) => (
+    <Box className={classes.section} m={3} >
+        <TableProducts rows={productsMock} onClick={handleClickProduct} />
+    </Box>
 )
 
 function Products() {
@@ -30,15 +47,18 @@ function Products() {
 
     const [switchMode, setswitchMode] = useState(false);
 
-    function handleClickProduct(id, image, title, description, price, ratingValue) {
+    function handleClickProduct(product) {
+
+        const id = product.id
+
         history.push(
             generatePath(`/products/:id`, { id }),
             {  // location state
-                image,
-                title,
-                description,
-                price,
-                ratingValue
+                image: product.image,
+                title: product.title,
+                description: product.description,
+                price: product.price,
+                ratingValue: product.ratingValue
             },
         )
     }
@@ -62,54 +82,12 @@ function Products() {
                 label='Mudar Visualização'
             />
 
-            <Box
-                className={classes.section}
-                display="flex"
-                flexWrap='wrap'
-                justifyContent='space-around'
-                alignItems='center'
-                m={3}
-            >
+            {switchMode ?
+                renderProductWithCard(classes, handleClickProduct)
+                :
+                renderProductWithList(classes, handleClickProduct)
+            }
 
-                {productsMock.map(product =>
-                    switchMode ?
-                        <ProductItemCard
-                            key={product.id}
-                            title={product.title}
-                            subHeader={product.subHeader}
-                            price={product.price}
-                            image={product.image}
-                            ratingValue={product.ratingValue}
-                            onClick={() => handleClickProduct(
-                                product.id,
-                                product.image,
-                                product.title,
-                                product.subHeader,
-                                product.price,
-                                product.ratingValue
-                            )}
-                        />
-                        :
-                        <ProductItemList
-                            key={product.id}
-                            title={product.title}
-                            subHeader={product.subHeader}
-                            price={product.price}
-                            image={product.image}
-                            ratingValue={product.ratingValue}
-                            onClick={() => handleClickProduct(
-                                product.id,
-                                product.image,
-                                product.title,
-                                product.subHeader,
-                                product.price,
-                                product.ratingValue
-                            )}
-                        />
-                )}
-
-
-            </Box>
         </>
     )
 }
