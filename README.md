@@ -97,29 +97,25 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
 - Testes Funcionais
  
 ## Backlog:
-- [ ] componente Menu
-- [ ] componente Produto
-- [ ] componente Botão
-- [ ] componente Input
-
 - [ ] Página de produtos 
-    - [ ] modo lista
-    - [ x ] modo cards
+    - [x] modo lista
+    - [x] modo cards
     - [ ] filtros
     - [ ] 4 produtos por linha
 - [ ] Página de exibir produto
-    - [ x ] Fotos do Produto
+    - [x] Fotos do Produto
     - [ ] Descrição
-    - [ x ] Avaliações     
+    - [x] Avaliações     
 - [ ] Página de Login(Modal)
-- [ ] Página de Checkout 
+- [x] Página de Checkout 
+    - [ ] mostrar página
 - [ ] Página de Pagamento
     - [ ] input de cidade
     - [ ] input de estado
     - [ ] validação
 - [ ] Página de Confirmação de pagamento
+- [ ] exibição de lista vazia
 
-- [ ] Listagem
 
 ### bugs
 - [ ] Expected "id" to be defined - Erro ao clicar no produto em modo tabela
