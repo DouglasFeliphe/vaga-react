@@ -15,54 +15,8 @@ const useStyles = makeStyles({
     },
 });
 
-const renderTableColumns = (columns) => (
-    <TableRow>
-        {columns.map((column, index) => (
-            <TableCell key={index}>{column}</TableCell>
-        ))}
-        <TableCell colSpan={2}></TableCell>
-    </TableRow>
-)
-
-const renderTableRows = (rows, onClick) => (
-    <>
-        {rows.map((row) => (
-            <TableRow key={row.id} >
-                <TableCell component="th" scope="row">
-                    <strong>{row.title}</strong>
-                </TableCell>
-                <TableCell component="th" scope="row">
-                    <img src={row.image} width='100'></img>
-                </TableCell>
-                <TableCell component="th" scope="row">
-                    {row.subHeader}
-                </TableCell>
-                <TableCell >
-                    2
-                 </TableCell>
-                <TableCell>
-                    <PriceLabel value={row.price} />
-                </TableCell>
-                <TableCell colSpan={2}>
-                    <IconButton onClick={onClick} aria-label="delete" >
-                        <DeleteIcon
-                            fontSize="large"
-                            color='error'
-                        />
-                    </IconButton>
-                </TableCell>
-            </TableRow>
-        ))
-        }
-    </>
-)
-
-function TableProducts({ title, columns, rows, onClick, ActionContent }) {
+function TableProducts({ title, columns, rows, ActionContent }) {
     const classes = useStyles();
-
-    function handleButtonClick (product) {
-        
-    }
 
     return (
         <>
@@ -76,7 +30,7 @@ function TableProducts({ title, columns, rows, onClick, ActionContent }) {
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead >
-                            {columns && renderTableColumns(columns)}
+                            {columns}
                         </TableHead>
                         <TableBody>
                             {rows}

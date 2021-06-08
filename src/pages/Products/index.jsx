@@ -8,6 +8,7 @@ import Menu from '../../components/Menu';
 import TableProducts from '../../components/TableProducts';
 import ProductItemCard from '../../components/ProductItemCard';
 import PriceLabel from '../../components/PriceLabel';
+import RatingLabel from '../../components/RatingLabel';
 
 import { useStyles } from './styles'
 import { productsMock } from '../../mock/products'
@@ -40,30 +41,32 @@ const renderProductWithCard = (classes, handleClickProduct) => (
 const renderProductWithList = (classes, handleClickProduct) => (
     <Box className={classes.section} m={3} >
         <TableProducts
-            rows={productsMock.map((product) => (
-                <TableRow key={product.id} >
-                    <TableCell component="th" scope="row">
-                        <strong>{product.title}</strong>
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                        <img src={product.image} width='100'></img>
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                        {product.subHeader}
-                    </TableCell>
-                    <TableCell >
-                        2
-                    </TableCell>
-                    <TableCell>
-                        <PriceLabel value={product.price} />
-                    </TableCell>
-                    <TableCell colSpan={2}>
-                        <Button onClick={() => handleClickProduct(product)} variant="contained" color="primary">
-                            Ver
+
+            rows={
+                productsMock.map((product) => (
+                    <TableRow key={product.id} >
+                        <TableCell component="th" scope="row">
+                            <strong>{product.title}</strong>
+                        </TableCell>
+                        <TableCell component="th" scope="row">
+                            <img src={product.image} width='100'></img>
+                        </TableCell>
+                        <TableCell component="th" scope="row">
+                            {product.subHeader}
+                        </TableCell>
+                        <TableCell >
+                            <PriceLabel value={product.price} />
+                        </TableCell>
+                        <TableCell>
+                            <RatingLabel value={product.ratingValue} />
+                        </TableCell>
+                        <TableCell colSpan={2}>
+                            <Button onClick={() => handleClickProduct(product)} variant="contained" color="primary">
+                                Ver
                     </Button>
-                    </TableCell>
-                </TableRow>
-            ))
+                        </TableCell>
+                    </TableRow>
+                ))
             }
 
         />
