@@ -33,12 +33,10 @@ export default function PrimarySearchAppBar() {
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
-
     };
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
-
     };
 
     const handleMenuClose = () => {
@@ -48,8 +46,11 @@ export default function PrimarySearchAppBar() {
 
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
-
     };
+
+    function handleClickShoppingCart() {
+        // body
+    }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -79,12 +80,14 @@ export default function PrimarySearchAppBar() {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <ShoppingCart />
-                    </Badge>
-                </IconButton>
-                <p>Carrinho</p>
+                <Link to='/checkout'>
+                    <IconButton aria-label="show 4 new mails" color="inherit">
+                        <Badge badgeContent={4} color="secondary">
+                            <ShoppingCart />
+                        </Badge>
+                    </IconButton>
+                    <p>Carrinho</p>
+                </Link>
             </MenuItem>
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton

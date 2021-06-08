@@ -8,15 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import Slider from '@material-ui/core/Slider';
-
-
-
-import img1 from '../../images/cadeira-gamer.jpg'
+import PriceLabel from '../PriceLabel'
 
 import DeleteIcon from '@material-ui/icons/Delete'
 
@@ -30,33 +25,33 @@ function createData(product, price, quantity) {
     return { product, price, quantity };
 }
 
-const rows = [
-    createData(
-        <>
-            <span>Cadeira Gamer</span>
-            <img src={img1}
-                alt=''
-                width={150}
-            />
-        </>
-        ,
-        159,
-        6.0
-    ),
-    createData(
-        <>
-            <span>Cadeira Gamer</span>
-            <img src={img1}
-                alt=''
-                width={150}
-            />
-        </>,
-        159,
-        6.0
-    )
-];
+// const rows = [
+//     createData(
+//         <>
+//             <span>Cadeira Gamer</span>
+//             <img src={img1}
+//                 alt=''
+//                 width={150}
+//             />
+//         </>
+//         ,
+//         159,
+//         6.0
+//     ),
+//     createData(
+//         <>
+//             <span>Cadeira Gamer</span>
+//             <img src={img1}
+//                 alt=''
+//                 width={150}
+//             />
+//         </>,
+//         159,
+//         6.0
+//     )
+// ];
 
-export default function BasicTable() {
+export default function BasicTable({ rows }) {
     const classes = useStyles();
 
     return (
@@ -70,16 +65,25 @@ export default function BasicTable() {
                         <TableHead >
                             <TableRow>
                                 <TableCell>Produto</TableCell>
-                                <TableCell align='center'>Quantidade</TableCell>
+                                <TableCell>Imagem</TableCell>
+                                <TableCell>Descrição</TableCell>
+                                <TableCell>Quantidade</TableCell>
                                 <TableCell>Preço</TableCell>
+                                <TableCell></TableCell>
                                 <TableCell></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {rows.map((row) => (
-                                <TableRow key={row.name}>
+                                <TableRow key={row.id}>
                                     <TableCell component="th" scope="row">
-                                        {row.product}
+                                        <strong>{row.title}</strong>
+                                    </TableCell>
+                                    <TableCell component="th" scope="row">
+                                        <img src={row.image} width='100'></img>
+                                    </TableCell>
+                                    <TableCell component="th" scope="row">
+                                        {row.subHeader}
                                     </TableCell>
                                     <TableCell align='center'>
                                         <Slider
@@ -92,9 +96,10 @@ export default function BasicTable() {
                                             max={10}
                                         />
                                     </TableCell>
-                                    <TableCell>R$ {row.price}</TableCell>
                                     <TableCell>
-                                        {/* <DeleteIcon /> */}
+                                        <PriceLabel value={row.price} />
+                                    </TableCell>
+                                    <TableCell>
                                         <IconButton aria-label="delete" >
                                             <DeleteIcon
                                                 fontSize="large"
@@ -106,11 +111,14 @@ export default function BasicTable() {
                             ))}
                             <TableRow >
                                 <TableCell component="th" scope="row">
-
                                 </TableCell>
-                                <TableCell align='center'></TableCell>
 
-                                <TableCell align='right'><strong> Total: R$300.00</strong></TableCell>
+                                <TableCell align='center'>
+                                </TableCell>
+
+                                <TableCell align='right'>
+                                    <strong> Total: R$300.00</strong>
+                                </TableCell>
                                 <TableCell >
                                     <Button
                                         variant="contained"

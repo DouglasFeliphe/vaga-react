@@ -10,52 +10,12 @@ import Menu from '../../components/Menu';
 import ProductItemCard from '../../components/ProductItemCard';
 import ProductItemList from '../../components/ProductItemList';
 
-import img1 from '../../images/cadeira-gamer.jpg'
-import img2 from '../../images/cooler1.jpg'
-import img3 from '../../images/teclado.jpg'
-import img4 from '../../images/watercooler.jpg'
-
 import { useStyles } from './styles'
 
-const products = [
-    {
-        id: 1,
-        title: "Watercooler Gamer",
-        subHeader: "lorem ipsum lorem ipsum",
-        price: 300.00,
-        image: img4,
-        ratingValue: 2
-    },
-    {
-        id: 2,
-        title: "Cadeira Gamer",
-        subHeader: "lorem ipsum lorem ipsum",
-        price: 300.00,
-        image: img1,
-        ratingValue: 2
-    },
-    {
-        id: 3,
-        title: "Cooler Gamer",
-        subHeader: "lorem ipsum lorem ipsum",
-        price: 300.00,
-        image: img2,
-        ratingValue: 2
-    },
-    {
-        id: 4,
-        title: "Teclado Gamer",
-        subHeader: "lorem ipsum lorem ipsum",
-        price: 300.00,
-        image: img3,
-        ratingValue: 2
-    },
-
-]
+import { productsMock } from '../../mock/products'
 
 const renderProductsWithListMod = (product, handleClickProduct) => (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-
     </List>
 )
 
@@ -68,11 +28,7 @@ function Products() {
     const classes = useStyles()
     const history = useHistory()
 
-    const [loading, setLoading] = useState(false);
-    const label = 'Modo Lista'
-
-
-
+    const [switchMode, setswitchMode] = useState(false);
 
     function handleClickProduct(id, image, title, description, price, ratingValue) {
         history.push(
@@ -97,15 +53,14 @@ function Products() {
                 }}
                 control={
                     <Switch
-                        checked={loading}
-                        onChange={() => setLoading(!loading)}
+                        checked={switchMode}
+                        onChange={() => setswitchMode(!switchMode)}
                         name="modo"
                         color="primary"
                     />
                 }
                 label='Mudar Visualização'
             />
-
 
             <Box
                 className={classes.section}
@@ -116,8 +71,8 @@ function Products() {
                 m={3}
             >
 
-                {products.map(product =>
-                    loading ?
+                {productsMock.map(product =>
+                    switchMode ?
                         <ProductItemCard
                             key={product.id}
                             title={product.title}
