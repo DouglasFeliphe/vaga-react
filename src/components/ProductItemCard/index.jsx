@@ -43,8 +43,8 @@ function ProductCard({ image, title, subHeader, price, ratingValue, onClick }) {
 
             <Box display='flex' justifyContent="space-around">
                 <CardActions >
-                    <Button variant="contained" color="primary" href="#contained-buttons">
-                        Conferir
+                    <Button variant="contained" color="primary">
+                        Ver
                     </Button>
                 </CardActions>
             </Box>

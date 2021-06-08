@@ -27,7 +27,7 @@ const renderTableColumns = (columns) => (
 const renderTableRows = (rows, onClick) => (
     <>
         {rows.map((row) => (
-            <TableRow key={row.id} onClick={onClick}>
+            <TableRow key={row.id} >
                 <TableCell component="th" scope="row">
                     <strong>{row.title}</strong>
                 </TableCell>
@@ -44,7 +44,7 @@ const renderTableRows = (rows, onClick) => (
                     <PriceLabel value={row.price} />
                 </TableCell>
                 <TableCell colSpan={2}>
-                    <IconButton aria-label="delete" >
+                    <IconButton onClick={onClick} aria-label="delete" >
                         <DeleteIcon
                             fontSize="large"
                             color='error'
@@ -59,6 +59,10 @@ const renderTableRows = (rows, onClick) => (
 
 function TableProducts({ title, columns, rows, onClick, ActionContent }) {
     const classes = useStyles();
+
+    function handleButtonClick (product) {
+        
+    }
 
     return (
         <>
@@ -75,7 +79,7 @@ function TableProducts({ title, columns, rows, onClick, ActionContent }) {
                             {columns && renderTableColumns(columns)}
                         </TableHead>
                         <TableBody>
-                            {renderTableRows(rows, onClick)}
+                            {rows}
                             {ActionContent}
                         </TableBody>
                     </Table>
@@ -89,6 +93,7 @@ TableProducts.propTypes = {
     title: PropTypes.string,
     columns: PropTypes.array,
     rows: PropTypes.object.isRequired,
+    ButtonAction: PropTypes.object.isRequired,
     onClick: PropTypes.func,
     ActionContent: PropTypes.object,
 };

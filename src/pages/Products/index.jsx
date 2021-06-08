@@ -2,10 +2,13 @@ import * as React from 'react';
 import { useState } from 'react';
 import { generatePath, useHistory } from 'react-router-dom'
 
-import { Box, Switch, FormControlLabel } from '@material-ui/core';
+import { Box, Switch, FormControlLabel, Button } from '@material-ui/core';
+import { TableRow, TableCell } from '@material-ui/core';
 import Menu from '../../components/Menu';
 import TableProducts from '../../components/TableProducts';
 import ProductItemCard from '../../components/ProductItemCard';
+import PriceLabel from '../../components/PriceLabel';
+
 import { useStyles } from './styles'
 import { productsMock } from '../../mock/products'
 
@@ -36,7 +39,34 @@ const renderProductWithCard = (classes, handleClickProduct) => (
 
 const renderProductWithList = (classes, handleClickProduct) => (
     <Box className={classes.section} m={3} >
-        <TableProducts rows={productsMock} onClick={handleClickProduct} />
+        <TableProducts
+            rows={productsMock.map((product) => (
+                <TableRow key={product.id} >
+                    <TableCell component="th" scope="row">
+                        <strong>{product.title}</strong>
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                        <img src={product.image} width='100'></img>
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                        {product.subHeader}
+                    </TableCell>
+                    <TableCell >
+                        2
+                    </TableCell>
+                    <TableCell>
+                        <PriceLabel value={product.price} />
+                    </TableCell>
+                    <TableCell colSpan={2}>
+                        <Button onClick={() => handleClickProduct(product)} variant="contained" color="primary">
+                            Ver
+                    </Button>
+                    </TableCell>
+                </TableRow>
+            ))
+            }
+
+        />
     </Box>
 )
 
@@ -45,7 +75,7 @@ function Products() {
     const classes = useStyles()
     const history = useHistory()
 
-    const [switchMode, setswitchMode] = useState(false);
+    const [switchMode, setSwitchMode] = useState(false);
 
     function handleClickProduct(product) {
 
@@ -74,7 +104,7 @@ function Products() {
                 control={
                     <Switch
                         checked={switchMode}
-                        onChange={() => setswitchMode(!switchMode)}
+                        onChange={() => setSwitchMode(!switchMode)}
                         name="modo"
                         color="primary"
                     />
