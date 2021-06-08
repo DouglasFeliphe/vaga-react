@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -12,6 +13,7 @@ import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import Slider from '@material-ui/core/Slider';
 import PriceLabel from '../PriceLabel'
+import ButtonAction from '../ButtonAction'
 
 import DeleteIcon from '@material-ui/icons/Delete'
 
@@ -21,37 +23,49 @@ const useStyles = makeStyles({
     },
 });
 
-function createData(product, price, quantity) {
-    return { product, price, quantity };
-}
+const renderTableColumns = (columns) => (
+    <TableRow>
+        {columns.map((column, index) => (
+            <TableCell key={index}>{column}</TableCell>
+        ))}
+        <TableCell colSpan={2}></TableCell>
+    </TableRow>
+)
 
-// const rows = [
-//     createData(
-//         <>
-//             <span>Cadeira Gamer</span>
-//             <img src={img1}
-//                 alt=''
-//                 width={150}
-//             />
-//         </>
-//         ,
-//         159,
-//         6.0
-//     ),
-//     createData(
-//         <>
-//             <span>Cadeira Gamer</span>
-//             <img src={img1}
-//                 alt=''
-//                 width={150}
-//             />
-//         </>,
-//         159,
-//         6.0
-//     )
-// ];
+const renderTableRows = (rows) => (
+    <>
+        {rows.map((row) => (
+            <TableRow key={row.id}>
+                <TableCell component="th" scope="row">
+                    <strong>{row.title}</strong>
+                </TableCell>
+                <TableCell component="th" scope="row">
+                    <img src={row.image} width='100'></img>
+                </TableCell>
+                <TableCell component="th" scope="row">
+                    {row.subHeader}
+                </TableCell>
+                <TableCell >
+                    2
+                 </TableCell>
+                <TableCell>
+                    <PriceLabel value={row.price} />
+                </TableCell>
+                <TableCell colSpan={2}>
+                    <IconButton aria-label="delete" >
+                        <DeleteIcon
+                            fontSize="large"
+                            color='error'
+                        />
+                    </IconButton>
+                </TableCell>
+            </TableRow>
+        ))
+        }
+    </>
+)
 
-export default function BasicTable({ rows }) {
+export default function BasicTable({ columns, rows, ActionContent }) {
     const classes = useStyles();
 
     return (
@@ -63,72 +77,11 @@ export default function BasicTable({ rows }) {
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead >
-                            <TableRow>
-                                <TableCell>Produto</TableCell>
-                                <TableCell>Imagem</TableCell>
-                                <TableCell>Descrição</TableCell>
-                                <TableCell>Quantidade</TableCell>
-                                <TableCell>Preço</TableCell>
-                                <TableCell></TableCell>
-                                <TableCell></TableCell>
-                            </TableRow>
+                            {columns && renderTableColumns(columns)}
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
-                                <TableRow key={row.id}>
-                                    <TableCell component="th" scope="row">
-                                        <strong>{row.title}</strong>
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        <img src={row.image} width='100'></img>
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {row.subHeader}
-                                    </TableCell>
-                                    <TableCell align='center'>
-                                        <Slider
-                                            defaultValue={1}
-                                            aria-labelledby="discrete-slider"
-                                            valueLabelDisplay="on"
-                                            step={1}
-                                            marks
-                                            min={1}
-                                            max={10}
-                                        />
-                                    </TableCell>
-                                    <TableCell>
-                                        <PriceLabel value={row.price} />
-                                    </TableCell>
-                                    <TableCell>
-                                        <IconButton aria-label="delete" >
-                                            <DeleteIcon
-                                                fontSize="large"
-                                                color='error'
-                                            />
-                                        </IconButton>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                            <TableRow >
-                                <TableCell component="th" scope="row">
-                                </TableCell>
-
-                                <TableCell align='center'>
-                                </TableCell>
-
-                                <TableCell align='right'>
-                                    <strong> Total: R$300.00</strong>
-                                </TableCell>
-                                <TableCell >
-                                    <Button
-                                        variant="contained"
-                                        color="secondary"
-                                        startIcon={<DeleteIcon />}
-                                    >
-                                        Finalizar Compra
-                                    </Button>
-                                </TableCell>
-                            </TableRow>
+                            {renderTableRows(rows)}
+                            {ActionContent}
                         </TableBody>
                     </Table>
                 </TableContainer >
