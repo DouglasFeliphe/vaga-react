@@ -4,10 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 import { Box, Paper, IconButton, Slider } from '@material-ui/core'
-import PriceLabel from '../PriceLabel'
-import ButtonAction from '../ButtonAction'
 
-import DeleteIcon from '@material-ui/icons/Delete'
 
 const useStyles = makeStyles({
     table: {
@@ -45,10 +42,8 @@ function TableProducts({ title, columns, rows, ActionContent }) {
 
 TableProducts.propTypes = {
     title: PropTypes.string,
-    columns: PropTypes.array,
-    rows: PropTypes.object.isRequired,
-    ButtonAction: PropTypes.object.isRequired,
-    onClick: PropTypes.func,
+    columns: PropTypes.element,
+    rows: PropTypes.array.isRequired,
     ActionContent: PropTypes.object,
 };
 

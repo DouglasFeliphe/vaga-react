@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import TableProducts from '../../components/TableProducts'
 import { TableCell, TableRow, Button, IconButton } from '@material-ui/core';
@@ -16,10 +16,18 @@ const columns = [
     'Quantidade',
 ]
 
+
+
 function Checkout() {
 
-    function handleClickRemoveProduct(product) {
-        alert(': ', product.id)
+    const [products, setProducts] = useState(productsMock);
+
+    useEffect(() => {
+    }, [products]);
+
+    function handleClickRemoveProduct(_product) {
+        const filteredProducts = products.filter(product => product.id !== _product.id)
+        setProducts(filteredProducts)
     }
 
     return (
@@ -36,7 +44,7 @@ function Checkout() {
                     </TableRow>
                 }
                 rows={
-                    productsMock.map((product) => (
+                    products.map((product) => (
                         <TableRow key={product.id} >
                             <TableCell component="th" scope="row">
                                 <strong>{product.title}</strong>
@@ -54,7 +62,7 @@ function Checkout() {
                                 2
                             </TableCell>
                             <TableCell colSpan={2}>
-                                <IconButton onClick={handleClickRemoveProduct} aria-label="delete" >
+                                <IconButton onClick={() => handleClickRemoveProduct(product)} aria-label="delete" >
                                     <DeleteIcon
                                         fontSize="large"
                                         color='error'

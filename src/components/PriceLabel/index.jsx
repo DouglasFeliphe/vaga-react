@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box'
 
 function PriceLabel({ value }) {
     return (
-        <Box Box
+        <Box
             component='span'
             color='success.light'
             fontWeight='bold'
