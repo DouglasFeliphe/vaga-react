@@ -42,7 +42,7 @@ function Checkout() {
                                 <strong>{product.title}</strong>
                             </TableCell>
                             <TableCell component="th" scope="row">
-                                <img src={product.image} width='100'></img>
+                                <img src={product.image} width='30'></img>
                             </TableCell>
                             <TableCell component="th" scope="row">
                                 {product.subHeader}
