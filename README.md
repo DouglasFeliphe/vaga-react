@@ -115,6 +115,7 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
     - [ ] validação
 - [ ] Página de Confirmação de pagamento
 - [ ] Exibição de lista vazia
+- [ ] Página de Carregamento
 
 
 ### bugs
