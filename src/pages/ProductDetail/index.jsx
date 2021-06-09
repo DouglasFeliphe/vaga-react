@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import Menu from '../../components/Menu'
 import PriceLabel from '../../components/PriceLabel';
@@ -12,12 +12,20 @@ import Button from '@material-ui/core/Button';
 import { ShoppingCart } from '@material-ui/icons';
 
 
-
 function ProductDetail() {
 
+  const history = useHistory()
   const location = useLocation();
-
   const { image, title, description, price, ratingValue } = location.state
+
+  const userIsLogged = true
+
+  function handleButtonAddCartClick() {
+    userIsLogged ?
+      history.push('/checkout')
+      :
+      history.push('/login')
+  }
 
   return (
     <>
@@ -53,6 +61,7 @@ function ProductDetail() {
           <ButtonAction label='Quantidade' />
 
           <Button
+            onClick={handleButtonAddCartClick}
             variant="contained"
             color="secondary"
             startIcon={<ShoppingCart />}
