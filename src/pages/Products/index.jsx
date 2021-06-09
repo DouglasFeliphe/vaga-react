@@ -19,6 +19,7 @@ const renderProductWithCard = (classes, handleClickProduct) => (
     <Box
         className={classes.section}
         display='flex'
+        flexWrap='wrap'
         justifyContent='space-around'
         m={3}
     >

@@ -101,7 +101,7 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
     - [x] modo lista
     - [x] modo cards
     - [ ] filtros
-    - [ ] 4 produtos por linha
+    - [x] 4 produtos por linha (modo cards)
 - [ ] Página de exibir produto
     - [x] Fotos do Produto
     - [ ] Descrição
@@ -119,4 +119,4 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
 
 
 ### bugs
-- [ ] Expected "id" to be defined - Erro ao clicar no produto em modo tabela
+- [x] Expected "id" to be defined - Erro ao clicar no produto em modo tabela

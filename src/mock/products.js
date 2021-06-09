@@ -38,5 +38,13 @@ export const productsMock = [
         image: img3,
         ratingValue: 2
     },
+    {
+        id: 4,
+        title: "Teclado Gamer",
+        subHeader: "lorem ipsum lorem ipsum",
+        price: 245.00,
+        image: img3,
+        ratingValue: 2
+    },
 
 ]
