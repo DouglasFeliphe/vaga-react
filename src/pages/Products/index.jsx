@@ -14,75 +14,53 @@ import { useStyles } from './styles'
 import { productsMock } from '../../mock/products'
 
 
-
-const renderProductWithCard = (classes, handleClickProduct) => (
-    <Box
-        className={classes.section}
-        display='flex'
-        flexWrap='wrap'
-        justifyContent='space-around'
-        m={3}
-    >
-        {productsMock.map(product => (
-            <ProductItemCard
-                key={product.id}
-                title={product.title}
-                subHeader={product.subHeader}
-                price={product.price}
-                image={product.image}
-                ratingValue={product.ratingValue}
-                onClick={
-                    () => handleClickProduct(product)
-                }
-            />
-        ))}
-    </Box>
+const renderProductWithCard = (product, handleClickProduct) => (
+    < ProductItemCard
+        key={product.id}
+        title={product.title}
+        subHeader={product.subHeader}
+        price={product.price}
+        image={product.image}
+        ratingValue={product.ratingValue}
+        onClick={() => handleClickProduct(product)}
+    />
 )
 
-const renderProductWithList = (classes, handleClickProduct) => (
-    <Box className={classes.section} m={3} >
-        <TableProducts
 
-            rows={
-                productsMock.map((product) => (
-                    <TableRow key={product.id} >
-                        <TableCell component="th" scope="row">
-                            <strong>{product.title}</strong>
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                            <img src={product.image} width='100'></img>
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                            {product.subHeader}
-                        </TableCell>
-                        <TableCell >
-                            <PriceLabel value={product.price} />
-                        </TableCell>
-                        <TableCell>
-                            <RatingLabel value={product.ratingValue} />
-                        </TableCell>
-                        <TableCell colSpan={2}>
-                            <Button onClick={() => handleClickProduct(product)} variant="contained" color="primary">
-                                Ver
-                    </Button>
-                        </TableCell>
-                    </TableRow>
-                ))
-            }
-
-        />
-    </Box>
+const renderProductWithList = (product, handleClickProduct) => (
+    < TableRow key={product.id} >
+        <TableCell component="th" scope="row">
+            <strong>{product.title}</strong>
+        </TableCell>
+        <TableCell component="th" scope="row">
+            <img src={product.image} width='200'></img>
+        </TableCell>
+        <TableCell component="th" scope="row">
+            {product.subHeader}
+        </TableCell>
+        <TableCell >
+            <PriceLabel value={product.price} />
+        </TableCell>
+        <TableCell>
+            <RatingLabel title='Avaliação' value={product.ratingValue} />
+        </TableCell>
+        <TableCell colSpan={2}>
+            <Button onClick={() => handleClickProduct(product)} variant="contained" color="primary">
+                Ver
+            </Button>
+        </TableCell>
+    </ TableRow >
 )
 
 function Products() {
 
-    const classes = useStyles()
     const history = useHistory()
+    const classes = useStyles()
 
+    const [products, setProducts] = useState(productsMock);
     const [switchMode, setSwitchMode] = useState(false);
 
     function handleClickProduct(product) {
-
         const id = product.id
 
         history.push(
@@ -93,7 +71,7 @@ function Products() {
                 description: product.description,
                 price: product.price,
                 ratingValue: product.ratingValue
-            },
+            }
         )
     }
 
@@ -117,17 +95,30 @@ function Products() {
             />
 
             {switchMode ?
-                renderProductWithCard(classes, handleClickProduct)
+                <Box
+                    className={classes.section}
+                    display='flex'
+                    flexWrap='wrap'
+                    justifyContent='space-around'
+                    m={3}
+                >
+                    {products.map(product =>
+                        renderProductWithCard(product, handleClickProduct))
+                    }
+                </Box>
                 :
-                renderProductWithList(classes, handleClickProduct)
+                <Box className={classes.section} m={3} >
+                    <TableProducts
+                        rows={
+                            products.map(product =>
+                                renderProductWithList(product, handleClickProduct))
+                        }
+                    >
+                    </TableProducts>
+                </Box>
             }
-
         </>
     )
 }
-
-
-
-
 
 export default Products;

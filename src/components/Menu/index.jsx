@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar';
@@ -25,6 +25,7 @@ import { useStyles } from './styles'
 export default function PrimarySearchAppBar() {
 
     const classes = useStyles();
+    const [inputSearchValue, setInputSearchValue] = useState('');
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -34,6 +35,10 @@ export default function PrimarySearchAppBar() {
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
+    const handleInputSearch = (value) => {
+        setInputSearchValue(value)        
+    }
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
@@ -47,10 +52,6 @@ export default function PrimarySearchAppBar() {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
-
-    function handleClickShoppingCart() {
-        // body
-    }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -128,6 +129,7 @@ export default function PrimarySearchAppBar() {
                             <SearchIcon />
                         </div>
                         <InputBase
+                            onChange={e => handleInputSearch(e.target.value)}
                             placeholder="Buscar…"
                             classes={{
                                 root: classes.inputRoot,

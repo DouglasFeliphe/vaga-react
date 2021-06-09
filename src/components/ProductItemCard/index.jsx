@@ -22,7 +22,6 @@ function ProductCard({ image, title, subHeader, price, ratingValue, onClick }) {
     return (
         <Card
             className={classes.root}
-            onClick={onClick}
         >
             <CardMedia
                 className={classes.media}
@@ -43,7 +42,11 @@ function ProductCard({ image, title, subHeader, price, ratingValue, onClick }) {
 
             <Box display='flex' justifyContent="space-around">
                 <CardActions >
-                    <Button variant="contained" color="primary">
+                    <Button
+                        onClick={onClick}
+                        variant="contained"
+                        color="primary"
+                    >
                         Ver
                     </Button>
                 </CardActions>
