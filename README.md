@@ -104,7 +104,7 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
     - [x] 4 produtos por linha (modo cards)
 - [ ] Página de exibir produto
     - [x] Fotos do Produto
-    - [ ] Descrição
+    - [x] Descrição
     - [x] Avaliações     
 - [ ] Página de Login    
     - [ ] link para modal com formulário de cadastro
