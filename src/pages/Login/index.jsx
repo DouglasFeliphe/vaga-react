@@ -1,11 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+
+import { Box, TextField, Button } from '@material-ui/core'
 import Menu from '../../components/Menu'
-import Box from '@material-ui/core/Box'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+
 
 
 function Login() {
+
+    const preventDefault = (event) => event.preventDefault();
+
     return (
         <>
             <Menu />
@@ -45,11 +49,13 @@ function Login() {
                     <Button
                         variant="contained"
                         color="secondary"
-
                     >
                         Acessar
                     </Button>
                 </form>
+                <Link href="/" onClick={preventDefault}>
+                    <strong style={{ color: 'blue' }}>Cadastre-se</strong>
+                </Link>
             </Box>
         </>
     )
