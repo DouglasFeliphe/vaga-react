@@ -108,7 +108,7 @@ const renderProductWithList = (product, handleClickProduct) => (
             <strong>{product.title}</strong>
         </TableCell>
         <TableCell component="th" scope="row">
-            <img src={product.image} width='200'></img>
+            <img src={product.image} alt={product.title} width='200'></img>
         </TableCell>
         <TableCell component="th" scope="row">
             {product.subHeader}

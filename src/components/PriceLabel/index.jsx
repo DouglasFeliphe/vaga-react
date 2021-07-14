@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box'
 function PriceLabel({ label, value, isLargeSize }) {
     return (
         <Box
-            component={isLargeSize ? 'h3' : 'span'}
+            component={isLargeSize ? 'h4' : 'span'}
             color='success.light'
             fontWeight='bold'
         >

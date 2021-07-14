@@ -97,10 +97,10 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
 - Testes Funcionais
  
 ## Backlog:
-- [ ] Página de produtos 
+- [x] Página de produtos 
     - [x] modo lista
     - [x] modo cards
-    - [ ] filtros
+    - [x] filtros
     - [x] 4 produtos por linha (modo cards)
 - [x] Página de exibir produto
     - [x] Fotos do Produto
@@ -112,8 +112,8 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
     - [x] mostrar dinamicamente a quantidade de cada produto
     - [x] mostrar valor total da compra na página de checkout
 - [ ] Página de Pagamento
-    - [ ] input de cidade
-    - [ ] input de estado
+    - [x] input de cidade
+    - [x] input de estado
     - [ ] validação
 - [ ] Página de Confirmação de pagamento
 - [x] Exibição de lista vazia

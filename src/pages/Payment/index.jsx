@@ -1,11 +1,20 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux'
+import axios from 'axios'
+// import { } from '../../reducers/shoppingCartSlice'
 
 import Menu from '../../components/Menu'
+import PriceLabel from '../../components/PriceLabel'
 import CoupomLink from '../../components/CoupomLink'
 
 import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,24 +23,49 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 
 
-
-
-function createData(name, price, fat, carbs, protein) {
-    return { name, price };
-}
-
-const rows = [
-    createData('Teclado Gamer × 1', 159),
-    createData('Teclado Gamer × 2', 159),
-    createData(<strong>Subtotal</strong>, 159),
-    createData(<strong>Total</strong>, 159),
-
-];
 
 function Payment() {
+
+    // redux
+    const products = useSelector(state => state.shoppingCart.products)
+    const total = useSelector(state => state.shoppingCart.total)
+
+    const [cities, setCities] = useState([]);
+    const [city, setCity] = useState(' ');
+    const [UFs, setUFs] = useState([]);
+    const [uf, setUf] = useState(' ');
+
+    useEffect(() => {
+        async function getUFsFromAPI() {
+            const response = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+            setUFs(response.data)
+        }
+
+        getUFsFromAPI()
+    }, []);
+
+    useEffect(() => {
+        if (uf !== ' ') {
+            async function getCitiesFromAPI() {
+                const response = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
+                setCities(response.data)
+            }
+
+            getCitiesFromAPI()
+        }
+    }, [uf]);
+
+
+    function handleSelectUFChange(event) {
+        setUf(event.target.value)
+    }
+
+    function handleSelectCityChange(event) {
+        setCity(event.target.value)
+    }
+
     return (
         <>
             <Menu />
@@ -47,102 +81,100 @@ function Payment() {
                         Detalhes de faturamento
                     </Box>
 
-                    <form noValidate autoComplete="off" >
-                        <Box display='flex'>
+                    <form noValidate autoComplete="off"  >
+                        <Box display='flex' gridGap={22}>
                             <TextField
-                                id="standard-full-width"
                                 label="Nome"
+                                variant='outlined'
                                 fullWidth
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
                             />
                             <TextField
-                                id="standard-full-width"
                                 label="Sobrenome"
+                                variant='outlined'
                                 fullWidth
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
                             />
                         </Box>
                         <TextField
-                            id="standard-full-width"
                             label="Nome da Empresa(Opcional)"
-                            // helperText="Full width!"
                             fullWidth
                             margin="normal"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
+                            variant='outlined'
                         />
                         <TextField
-                            id="standard-full-width"
+                            type='email'
                             label="Endereço"
                             // helperText="Full width!"
                             fullWidth
                             margin="normal"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
+                            variant='outlined'
                         />
+
+                        <Box display='flex' gridGap={22}>
+                            <FormControl variant="outlined" margin='normal' fullWidth>
+                                <InputLabel >Estado</InputLabel>
+                                <Select
+                                    value={uf}
+                                    onChange={handleSelectUFChange}
+                                    label='Estado'
+                                >
+                                    {UFs.map(uf =>
+                                        <MenuItem
+                                            key={uf.id}
+                                            value={uf.sigla}
+                                        >
+                                            {uf.sigla}
+                                        </MenuItem>
+                                    )}
+                                </Select>
+                            </FormControl>
+
+                            <FormControl variant='outlined' margin='normal' fullWidth>
+                                <InputLabel>Cidade</InputLabel>
+                                <Select
+                                    label='Cidade'
+                                    value={city}
+                                    onChange={handleSelectCityChange}
+                                >
+                                    {cities.map(city => (
+                                        <MenuItem
+                                            key={city.id}
+                                            value={city.nome}
+                                        >
+                                            {city.nome}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Box>
+
                         <TextField
-                            id="standard-full-width"
-                            label="Cidade"
-                            // helperText="Full width!"
-                            fullWidth
-                            margin="normal"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                        <TextField
-                            id="standard-full-width"
-                            label="Estado"
-                            // helperText="Full width!"
-                            fullWidth
-                            margin="normal"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                        <TextField
-                            id="standard-full-width"
                             label="Cep"
                             // helperText="Full width!"
                             fullWidth
                             margin="normal"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
+                            variant='outlined'
                         />
                         <TextField
-                            id="standard-full-width"
                             label="Telefone"
                             // helperText="Full width!"
                             fullWidth
                             margin="normal"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
+                            variant='outlined'
                         />
                         <TextField
-                            id="standard-full-width"
                             label="Endereço de Email"
                             // helperText="Full width!"
                             fullWidth
                             margin="normal"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
+                            variant='outlined'
                         />
                     </form>
                 </Box>
                 <Box
                     display='flex'
                     flexDirection='column'
-                    width={700}
-                    height={700}
+                    width={500}
+                // height={700}
                 >
                     <h3>Seu pedido</h3>
                     <TableContainer component={Paper} >
@@ -150,22 +182,30 @@ function Payment() {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Produto</TableCell>
-                                    <TableCell>Subtotal</TableCell>
+                                    <TableCell>Quantidade</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => (
-                                    <TableRow key={row.name}>
+                                {products.map(product => (
+                                    <TableRow key={product.id}>
                                         <TableCell component="th" scope="row">
-                                            {row.name}
+                                            {product.title}
                                         </TableCell>
                                         <TableCell >
-                                            <Box color='success.main' fontWeight={500}>
-                                                R${row.price}
+                                            <Box fontWeight={500}>
+                                                x{product.productQty}
                                             </Box>
                                         </TableCell>
                                     </TableRow>
                                 ))}
+                                <TableRow >
+                                    <TableCell component="th" scope="row">
+                                        <strong>Total</strong>
+                                    </TableCell>
+                                    <TableCell >
+                                        <PriceLabel value={total} />
+                                    </TableCell>
+                                </TableRow>
                             </TableBody>
                         </Table>
                     </TableContainer>

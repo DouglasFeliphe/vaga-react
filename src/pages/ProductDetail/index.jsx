@@ -16,7 +16,7 @@ import { ShoppingCart } from '@material-ui/icons';
 
 function ProductDetail() {
 
-  const [productQty, setProductQty] = useState(0);
+  const [productQty, setProductQty] = useState(1);
   const dispatch = useDispatch()
 
   const history = useHistory()
@@ -30,7 +30,7 @@ function ProductDetail() {
   }
 
   function handleDecreaseQty() {
-    setProductQty(Math.max(productQty - 1, 0))
+    setProductQty(Math.max(productQty - 1, 1))
   }
 
   function handleButtonAddCartClick() {

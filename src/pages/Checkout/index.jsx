@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { remove } from "../../reducers/shoppingCartSlice";
 
@@ -53,7 +54,7 @@ function Checkout() {
                                     <strong>{product.title}</strong>
                                 </TableCell>
                                 <TableCell component="th" scope="row">
-                                    <img src={product.image} width='30'></img>
+                                    <img src={product.image} alt={product.title} width='30'></img>
                                 </TableCell>
                                 <TableCell component="th" scope="row">
                                     {product.subHeader}
@@ -81,12 +82,14 @@ function Checkout() {
                                 <PriceLabel label='Total: ' value={total} isLargeSize />
                             </TableCell>
                             <TableCell  >
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                >
-                                    Finalizar Compra
-                                </Button>
+                                <Link to='/payment'>
+                                    <Button
+                                        variant="contained"
+                                        color="secondary"
+                                    >
+                                        Finalizar Compra
+                                    </Button>
+                                </Link>
                             </TableCell>
                         </TableRow>
                     }
