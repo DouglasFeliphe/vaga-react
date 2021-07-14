@@ -110,6 +110,7 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
     - [ ] link para modal com formulário de cadastro
 - [x] Página de Checkout 
     - [x] mostrar dinamicamente a quantidade de cada produto
+    - [x] mostrar valor total da compra na página de checkout
 - [ ] Página de Pagamento
     - [ ] input de cidade
     - [ ] input de estado

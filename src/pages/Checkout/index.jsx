@@ -21,15 +21,15 @@ const columns = [
 function Checkout() {
 
     // redux
-    const qty = useSelector(state => state.shoppingCart.qty)
     const products = useSelector(state => state.shoppingCart.products)
+    const total = useSelector(state => state.shoppingCart.total)
     const dispatch = useDispatch()
 
     useEffect(() => { }, [products]);
 
 
-    function handleClickRemoveProduct(product_id) {
-        dispatch(remove(product_id))
+    function handleClickRemoveProduct(product) {
+        dispatch(remove(product))
     }
 
     return (
@@ -65,7 +65,7 @@ function Checkout() {
                                     {product.productQty}
                                 </TableCell>
                                 <TableCell colSpan={2}>
-                                    <IconButton onClick={() => handleClickRemoveProduct(product.id)} aria-label="delete" >
+                                    <IconButton onClick={() => handleClickRemoveProduct(product)} aria-label="delete" >
                                         <DeleteIcon
                                             fontSize="large"
                                             color='error'
@@ -78,7 +78,7 @@ function Checkout() {
                     ActionContent={
                         <TableRow>
                             <TableCell colSpan={5} align='right'>
-                                <strong>Total: R$300.00</strong>
+                                <PriceLabel label='Total: ' value={total} isLargeSize />
                             </TableCell>
                             <TableCell  >
                                 <Button
