@@ -5,7 +5,7 @@ import img2 from '../images/cooler1.jpg'
 import img3 from '../images/teclado.jpg'
 import img4 from '../images/watercooler.jpg'
 
-export const productsMock = [
+export const JSON_PRODUCTS = [
     {
         id: 1,
         title: "Watercooler Gamer",

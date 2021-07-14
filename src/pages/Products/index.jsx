@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux'
 import { generatePath, useHistory } from 'react-router-dom'
 
 import { Box, Switch, FormControlLabel, Button } from '@material-ui/core';
@@ -11,15 +12,17 @@ import PriceLabel from '../../components/PriceLabel';
 import RatingLabel from '../../components/RatingLabel';
 
 import { useStyles } from './styles'
-import { productsMock } from '../../mock/products'
 
 
 function Products() {
 
+    // redux
+    const products = useSelector(state => state.products.products)
+    let inputSearchValue = useSelector(state => state.products.inputSearchValue)
+
     const history = useHistory()
     const classes = useStyles()
 
-    const [products, setProducts] = useState(productsMock);
     const [switchMode, setSwitchMode] = useState(false);
 
     function handleClickProduct(product) {
@@ -65,16 +68,18 @@ function Products() {
                     justifyContent='space-around'
                     m={3}
                 >
-                    {products.map(product =>
-                        renderProductWithCard(product, handleClickProduct))
+                    {products
+                        .filter(product => renderFilteredProducts(inputSearchValue, product))
+                        .map(product => renderProductWithCard(product, handleClickProduct))
                     }
                 </Box>
                 :
                 <Box className={classes.section} m={3} >
                     <TableProducts
                         rows={
-                            products.map(product =>
-                                renderProductWithList(product, handleClickProduct))
+                            products
+                                .filter(product => renderFilteredProducts(inputSearchValue, product))
+                                .map(product => renderProductWithList(product, handleClickProduct))
                         }
                     >
                     </TableProducts>
@@ -121,5 +126,13 @@ const renderProductWithList = (product, handleClickProduct) => (
         </TableCell>
     </ TableRow >
 )
+
+function renderFilteredProducts(inputSearchValue, product) {
+    if (inputSearchValue === '') {
+        return product
+    } else if (product.title.toLowerCase().includes(inputSearchValue.toLowerCase())) {
+        return product
+    }
+}
 
 export default Products;

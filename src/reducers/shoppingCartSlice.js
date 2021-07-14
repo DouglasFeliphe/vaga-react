@@ -23,6 +23,6 @@ export const shoppingCartSlice = createSlice({
     }
 })
 
-export const { add, remove } = shoppingCartSlice.actions
+export const { add, remove, searchProductsByTerm } = shoppingCartSlice.actions
 
 export default shoppingCartSlice.reducer

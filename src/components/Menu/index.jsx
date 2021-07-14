@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -18,7 +18,7 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart'
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
-import { add, remove } from '../../reducers/shoppingCartSlice'
+import { searchProductsByTerm } from '../../reducers/productsSlice'
 
 
 import { useStyles } from './styles'
@@ -31,7 +31,7 @@ export default function PrimarySearchAppBar() {
     const dispatch = useDispatch()
 
     const classes = useStyles();
-    const [inputSearchValue, setInputSearchValue] = useState('');
+    // const [inputSearchValue, setInputSearchValue] = useState('');
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -43,7 +43,7 @@ export default function PrimarySearchAppBar() {
     };
 
     const handleInputSearch = (value) => {
-        setInputSearchValue(value)
+        dispatch(searchProductsByTerm(value))
     }
 
     const handleMobileMenuClose = () => {

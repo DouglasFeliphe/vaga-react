@@ -6,18 +6,16 @@ import Typography from '@material-ui/core/Typography'
 import Rating from '@material-ui/lab/Rating';
 
 
-function RatingLabel({ title, value }) {
-    return (
-        <Box
-            component="fieldset"
-            borderColor="transparent"
-            mb={3}
-        >
-            <Typography component="legend">{title}</Typography>
-            <Rating name="read-only" value={value} readOnly />
-        </Box>
-    )
-}
+const RatingLabel = ({ title, value }) => (
+    <Box
+        component="fieldset"
+        borderColor="transparent"
+        mb={3}
+    >
+        <Typography component="legend">{title}</Typography>
+        <Rating name="read-only" value={value} readOnly />
+    </Box>
+)
 
 RatingLabel.propTypes = {
     title: PropTypes.string,
