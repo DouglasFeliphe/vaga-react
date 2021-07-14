@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar';
@@ -17,12 +18,17 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart'
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
+import { add, remove } from '../../reducers/shoppingCartSlice'
 
 
 import { useStyles } from './styles'
 
 
 export default function PrimarySearchAppBar() {
+
+    // redux
+    const qty = useSelector(state => state.shoppingCart.qty)
+    const dispatch = useDispatch()
 
     const classes = useStyles();
     const [inputSearchValue, setInputSearchValue] = useState('');
@@ -37,7 +43,7 @@ export default function PrimarySearchAppBar() {
     };
 
     const handleInputSearch = (value) => {
-        setInputSearchValue(value)        
+        setInputSearchValue(value)
     }
 
     const handleMobileMenuClose = () => {
@@ -83,11 +89,11 @@ export default function PrimarySearchAppBar() {
             <MenuItem>
                 <Link to='/checkout'>
                     <IconButton aria-label="show 4 new mails" color="inherit">
-                        <Badge badgeContent={4} color="secondary">
+                        <Badge badgeContent={6} color="secondary">
                             <ShoppingCart />
                         </Badge>
                     </IconButton>
-                    <p>Carrinho</p>
+                    {/* <p>Carrinho</p> */}
                 </Link>
             </MenuItem>
             <MenuItem onClick={handleProfileMenuOpen}>
@@ -148,7 +154,7 @@ export default function PrimarySearchAppBar() {
                         <Link to='/checkout'>
                             <IconButton aria-label="show 4 new mails" color="inherit">
                                 Carrinho
-                                <Badge badgeContent={4} color="secondary">
+                                <Badge badgeContent={qty} color="secondary">
                                     <ShoppingCart />
                                 </Badge>
                             </IconButton>

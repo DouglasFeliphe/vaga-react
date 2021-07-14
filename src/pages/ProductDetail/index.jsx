@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { add } from '../../reducers/shoppingCartSlice'
 
 import Menu from '../../components/Menu'
 import PriceLabel from '../../components/PriceLabel';
@@ -14,16 +16,39 @@ import { ShoppingCart } from '@material-ui/icons';
 
 function ProductDetail() {
 
+  const [productQty, setProductQty] = useState(0);
+  const dispatch = useDispatch()
+
   const history = useHistory()
   const location = useLocation();
-  const { image, title, description, price, ratingValue } = location.state
+  const { id, image, title, description, price, ratingValue } = location.state
 
   const userIsLogged = true
 
+  function handleIncreaseQty() {
+    setProductQty(productQty + 1)
+  }
+
+  function handleDecreaseQty() {
+    setProductQty(Math.max(productQty - 1, 0))
+  }
+
   function handleButtonAddCartClick() {
-    userIsLogged ?
+    if (userIsLogged) {
+      const product = {
+        id,
+        image,
+        title,
+        description,
+        price,
+        productQty,
+        ratingValue
+      }
+
+      dispatch(add(product))
       history.push('/checkout')
-      :
+
+    } else
       history.push('/login')
   }
 
@@ -58,7 +83,12 @@ function ProductDetail() {
 
           <RatingLabel title="Avaliação" value={ratingValue} />
 
-          <ButtonAction label='Quantidade' />
+          <ButtonAction
+            label='Quantidade'
+            value={productQty}
+            onClickIncrease={handleIncreaseQty}
+            onClickDecrease={handleDecreaseQty}
+          />
 
           <Button
             onClick={handleButtonAddCartClick}

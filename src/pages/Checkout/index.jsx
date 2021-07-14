@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { remove } from "../../reducers/shoppingCartSlice";
 
 import Menu from '../../components/Menu'
 import TableProducts from '../../components/TableProducts'
@@ -7,8 +9,6 @@ import EmptyCart from '../EmptyCart'
 
 import { TableCell, TableRow, Button, IconButton, } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete'
-
-import { productsMock } from '../../mock/products'
 
 const columns = [
     'Produto',
@@ -20,14 +20,16 @@ const columns = [
 
 function Checkout() {
 
-    const [products, setProducts] = useState(productsMock);
+    // redux
+    const qty = useSelector(state => state.shoppingCart.qty)
+    const products = useSelector(state => state.shoppingCart.products)
+    const dispatch = useDispatch()
 
     useEffect(() => { }, [products]);
 
 
-    function handleClickRemoveProduct(_product) {
-        const filteredProducts = products.filter(product => product.id !== _product.id)
-        setProducts(filteredProducts)
+    function handleClickRemoveProduct(product_id) {
+        dispatch(remove(product_id))
     }
 
     return (
@@ -60,10 +62,10 @@ function Checkout() {
                                     <PriceLabel value={product.price} />
                                 </TableCell>
                                 <TableCell >
-                                    2
-                            </TableCell>
+                                    {product.productQty}
+                                </TableCell>
                                 <TableCell colSpan={2}>
-                                    <IconButton onClick={() => handleClickRemoveProduct(product)} aria-label="delete" >
+                                    <IconButton onClick={() => handleClickRemoveProduct(product.id)} aria-label="delete" >
                                         <DeleteIcon
                                             fontSize="large"
                                             color='error'

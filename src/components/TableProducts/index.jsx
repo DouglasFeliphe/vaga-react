@@ -25,7 +25,10 @@ function TableProducts({ title, columns, rows, ActionContent }) {
 
             <Box mx={15} >
                 <TableContainer component={Paper}>
-                    <Table className={classes.table} aria-label="simple table">
+                    <Table
+                        className={classes.table}
+                        aria-label="simple table"
+                    >
                         <TableHead >
                             {columns}
                         </TableHead>
