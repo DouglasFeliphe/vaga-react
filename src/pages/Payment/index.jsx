@@ -1,11 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 // import { } from '../../reducers/shoppingCartSlice'
 
 import Menu from '../../components/Menu'
 import PriceLabel from '../../components/PriceLabel'
+import AlertDialog from '../../components/AlertDialog'
 import CoupomLink from '../../components/CoupomLink'
 
 import Box from '@material-ui/core/Box'
@@ -28,6 +30,9 @@ import Paper from '@material-ui/core/Paper';
 
 function Payment() {
 
+    const history = useHistory()
+
+    const [openDialog, setOpenDialog] = React.useState(false);
     // redux
     const products = useSelector(state => state.shoppingCart.products)
     const total = useSelector(state => state.shoppingCart.total)
@@ -66,8 +71,29 @@ function Payment() {
         setCity(event.target.value)
     }
 
+    function handleConfirmPayment() {
+        setOpenDialog(false);
+        history.push('/confirmationPayment')
+    }
+
+    const handleOpenDialogAlertDialog = () => {
+        setOpenDialog(true);
+    };
+
+    const handleCancelPayment = () => {
+        setOpenDialog(false);
+    };
+
+
+
     return (
         <>
+            <AlertDialog
+                open={openDialog}
+                onConfirm={handleConfirmPayment}
+                onCancel={handleCancelPayment}
+            />
+
             <Menu />
             <Box
                 display='flex'
@@ -211,12 +237,12 @@ function Payment() {
                     </TableContainer>
 
                     {/* <CoupomLink /> */}
-
                     <Button
                         variant="contained"
                         size='large'
                         color="secondary"
                         style={{ marginTop: 44 }}
+                        onClick={handleOpenDialogAlertDialog}
                     >
                         Finalizar Compra
                     </Button>

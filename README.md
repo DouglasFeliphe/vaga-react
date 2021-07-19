@@ -115,7 +115,7 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
     - [x] input de cidade
     - [x] input de estado
     - [ ] validação
-- [ ] Página de Confirmação de pagamento
+- [x] Página de Confirmação de pagamento
 - [x] Exibição de lista vazia
 - [ ] Página de Carregamento
 

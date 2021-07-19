@@ -6,7 +6,7 @@ import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail';
 import Checkout from './pages/Checkout';
 import Payment from './pages/Payment';
-import Confirm from './pages/Confirm';
+import ConfirmationPayment from './pages/ConfirmationPayment';
 import Error from './pages/Error'
 
 const Routes = () => {
@@ -28,8 +28,8 @@ const Routes = () => {
                 <Route path='/payment' >
                     <Payment />
                 </Route>
-                <Route path='/confirm' >
-                    <Confirm />
+                <Route path='/confirmationPayment' >
+                    <ConfirmationPayment />
                 </Route>
                 <Route path='*'>
                     <Error />
