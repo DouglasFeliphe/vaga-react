@@ -107,9 +107,10 @@ function Payment() {
                         Detalhes de faturamento
                     </Box>
 
-                    <form noValidate autoComplete="off"  >
+                    <form autoComplete="off"  >
                         <Box display='flex' gridGap={22}>
                             <TextField
+                                required
                                 label="Nome"
                                 variant='outlined'
                                 fullWidth
@@ -127,6 +128,7 @@ function Payment() {
                             variant='outlined'
                         />
                         <TextField
+                            required
                             type='email'
                             label="Endereço"
                             // helperText="Full width!"
@@ -136,7 +138,7 @@ function Payment() {
                         />
 
                         <Box display='flex' gridGap={22}>
-                            <FormControl variant="outlined" margin='normal' fullWidth>
+                            <FormControl required variant="outlined" margin='normal' fullWidth>
                                 <InputLabel >Estado</InputLabel>
                                 <Select
                                     value={uf}
@@ -154,7 +156,7 @@ function Payment() {
                                 </Select>
                             </FormControl>
 
-                            <FormControl variant='outlined' margin='normal' fullWidth>
+                            <FormControl required variant='outlined' margin='normal' fullWidth>
                                 <InputLabel>Cidade</InputLabel>
                                 <Select
                                     label='Cidade'
@@ -174,7 +176,8 @@ function Payment() {
                         </Box>
 
                         <TextField
-                            label="Cep"
+                            required
+                            label="CEP"
                             // helperText="Full width!"
                             fullWidth
                             margin="normal"
@@ -182,6 +185,7 @@ function Payment() {
                         />
                         <TextField
                             label="Telefone"
+                            required
                             // helperText="Full width!"
                             fullWidth
                             margin="normal"

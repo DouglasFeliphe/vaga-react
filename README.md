@@ -108,6 +108,7 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
     - [x] Avaliações     
 - [ ] Página de Login    
     - [ ] link para modal com formulário de cadastro
+- [ ] Página de Registro    
 - [x] Página de Checkout 
     - [x] mostrar dinamicamente a quantidade de cada produto
     - [x] mostrar valor total da compra na página de checkout

@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail';
 import Checkout from './pages/Checkout';
@@ -21,6 +22,9 @@ const Routes = () => {
                 </Route>
                 <Route path='/login' >
                     <Login />
+                </Route>
+                <Route path='/register' >
+                    <Register />
                 </Route>
                 <Route path='/checkout' >
                     <Checkout />
