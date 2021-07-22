@@ -15,9 +15,9 @@
     "react": "^17.0.2",
     "react-bodymovin": "^2.0.0",
     "react-dom": "^17.0.2",
+    "react-number-format": "^4.6.4",
     "react-redux": "^7.2.4",
     "react-scripts": "4.0.3",
-    "react-text-mask": "^5.4.3",
     "styled-components": "^5.3.0",
     "web-vitals": "^1.1.2"
   },
