@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setShoppingCart, remove } from "../../reducers/shoppingCartSlice";
@@ -16,7 +16,6 @@ const columns = ["Produto", "Imagem", "Descrição", "Preço", "Quantidade"];
 function Checkout() {
   // redux
 
-  const shoppingCart = useSelector((state) => state.shoppingCart);
   const products = useSelector((state) => state.shoppingCart.products);
   const total = useSelector((state) => state.shoppingCart.total);
 
