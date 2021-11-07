@@ -6,7 +6,7 @@ Conheça mais sobre nossa empresa em https://rockapps.com.br.
 
 ## O Teste
 
-Teste para candidatos à vaga de Desenvolvedor React e/ou React Native Júnior, Pleno e Sênior. O teste é o mesmo para todos os níveis! Nós fazemos isso esperando que os devs mais iniciantes entendam qual o modelo de profissional que temos por aqui e que buscamos para o nosso time. 
+Teste para candidatos à vaga de Desenvolvedor React e/ou React Native Júnior, Pleno e Sênior. O teste é o mesmo para todos os níveis! Nós fazemos isso esperando que os devs mais iniciantes entendam qual o modelo de profissional que temos por aqui e que buscamos para o nosso time.
 
 Você deverá criar um fork deste projeto, e desenvolver em cima do seu fork. Use o README principal do seu repositório para nos contar como foi resolver seu teste, as decisões tomadas, como você organizou e separou seu código, e principalmente as instruções de como rodar seu projeto, afinal a primeira pessoa que irá rodar seu projeto será um programador de nossa equipe, e se você conseguir explicar para ele como fazer isso, você já começou bem!
 
@@ -16,33 +16,31 @@ Nós não definimos um tempo limite para resolução deste teste, o que vale par
 
 Em seguida, é **fundamental** o preenchimento do formulário https://link.rockapps.com.br/vaga-dev-react. Demora 5 minutinhos! Se necessário, entre em contato com a gente em carreiras@rockapps.com.br.
 
-
-## As Instruções 
+## As Instruções
 
 O desafio consiste na implementação de um e-Commerce Web ou Mobile utilizando o framework React ou React Native. Os dados deverão ser mockados. Fique à vontade para utilizar boilerplates e outras bibliotecas disponíveis (Expo, CRA, Bootstrap, Material, etc).
 
 ### Principais telas a serem desenvolvidas
 
 - Lista de produtos
-    - Modo lista e modo cards
-    - Filtros
+  - Modo lista e modo cards
+  - Filtros
 - Página de Produto
-    - Fotos do Produto
-    - Descrição
-    - Avaliações 
+  - Fotos do Produto
+  - Descrição
+  - Avaliações
 - Página de Carrinho / Checkout
 - Página de pagamento (cadastro de cartão)
 - Página de confirmação da compra
 
+### Processo Principal
 
- ### Processo Principal
- 
- 1. Usuário deverá se autenticar (ou se cadastrar)
- 1. Usuário devera trocas a foto de perfil
- 1. Usuário deverá incluir um item no carrinho
- 1. Usuário deverá incluir outro item no carrinho
- 1. Usuário deverá remover o primeiro item do carrinho
- 1. Usuário deverá finalizar o carrinho e confirmar a compra do pedido
+1.  Usuário deverá se autenticar (ou se cadastrar)
+1.  Usuário devera trocas a foto de perfil
+1.  Usuário deverá incluir um item no carrinho
+1.  Usuário deverá incluir outro item no carrinho
+1.  Usuário deverá remover o primeiro item do carrinho
+1.  Usuário deverá finalizar o carrinho e confirmar a compra do pedido
 
 #### O que queremos que você demonstre
 
@@ -77,9 +75,9 @@ O desafio consiste na implementação de um e-Commerce Web ou Mobile utilizando 
 - Ver o código rodando live (Bucket estático S3, Heroku, Firebase Hosting)
 
 #### O que nós não gostaríamos
+
 - Descobrir que não foi você quem fez seu teste
 - Ver commits grandes, sem muita explicação nas mensagens em seu repositório
-
 
 ## O Que Utilizar
 
@@ -95,34 +93,35 @@ Esperamos que você faça uso das principais tecnologias embarcadas no React e/o
 - Animações
 - Testes Unitários
 - Testes Funcionais
- 
+
 ## Backlog:
-- [x] Página de produtos 
-    - [x] modo lista
-    - [x] modo cards
-    - [x] filtros
-    - [x] 4 produtos por linha (modo cards)
+
+- [x] Página de produtos
+  - [x] modo lista
+  - [x] modo cards
+  - [x] filtros
+  - [x] 4 produtos por linha (modo cards)
 - [x] Página de exibir produto
-    - [x] Fotos do Produto
-    - [x] Descrição
-    - [x] Avaliações     
+  - [x] Fotos do Produto
+  - [x] Descrição
+  - [x] Avaliações
 - [ ] Página de Login
-    - [ ] Validação    
-    - [ ] Link para página de registro
-    - [ ] Logar com google
-- [ ] Página de Registro 
-    - [ ] validação
-- [x] Página de Checkout 
-    - [x] mostrar dinamicamente a quantidade de cada produto
-    - [x] mostrar valor total da compra na página de checkout
+  - [ ] Validação
+  - [ ] Link para página de registro
+  - [ ] Logar com google
+- [ ] Página de Registro
+  - [ ] validação
+- [x] Página de Checkout
+  - [x] mostrar dinamicamente a quantidade de cada produto
+  - [x] mostrar valor total da compra na página de checkout
 - [ ] Página de Pagamento
-    - [x] input de cidade
-    - [x] input de estado
-    - [ ] validação
+  - [x] input de cidade
+  - [x] input de estado
+  - [ ] validação
 - [x] Página de Confirmação de pagamento
 - [x] Exibição de lista vazia
 - [ ] Página de Carregamento
 
-
 ### bugs
+
 - [x] Expected "id" to be defined - Erro ao clicar no produto em modo tabela

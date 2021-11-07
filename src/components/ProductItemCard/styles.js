@@ -1,44 +1,45 @@
-import { makeStyles } from '@material-ui/core/styles'
-import { red, green } from '@material-ui/core/colors';
+import { makeStyles } from "@material-ui/core/styles";
+import { red, green } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme) => ({
-    root: {
-        maxWidth: 345,
-        width: 345,
-        marginBottom: 33,
-        padding: 44,
-        textAlign: 'center',
-        justifyContent: 'center'
-    },
+  root: {
+    maxWidth: 345,
+    width: "auto",
+    margin: 22,
+    marginBottom: 33,
+    padding: 44,
+    textAlign: "center",
+    justifyContent: "center",
+  },
 
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    },
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+  },
 
-    card_actions: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-around'
-    },
+  card_actions: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
 
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
 
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
+  expandOpen: {
+    transform: "rotate(180deg)",
+  },
 
-    avatar: {
-        backgroundColor: red[500],
-    },
+  avatar: {
+    backgroundColor: red[500],
+  },
 
-    textPrice: {
-        color: green[500]
-    }
+  textPrice: {
+    color: green[500],
+  },
 }));
