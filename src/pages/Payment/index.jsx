@@ -93,7 +93,7 @@ function Payment() {
       />
 
       <Menu />
-      <Box display="flex" mx={11} my={5}>
+      <Box display="flex" mx={11} my={0} py={5} boxShadow={2}>
         <Box px={22}>
           <Box fontSize="h3.fontSize">Finalizar compra</Box>
 
@@ -197,37 +197,39 @@ function Payment() {
           width={500}
           // height={700}
         >
-          <h3>Seu pedido</h3>
-          <TableContainer component={Paper}>
-            <Table aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Produto</TableCell>
-                  <TableCell>Quantidade</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {products.map((product) => (
-                  <TableRow key={product.id}>
+          <h3>SEU PEDIDO</h3>
+          <Box mt={5}>
+            <TableContainer component={Paper}>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Produto</TableCell>
+                    <TableCell>Quantidade</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {products.map((product) => (
+                    <TableRow key={product.id}>
+                      <TableCell component="th" scope="row">
+                        {product.title}
+                      </TableCell>
+                      <TableCell>
+                        <Box fontWeight={500}>x{product.productQty}</Box>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  <TableRow>
                     <TableCell component="th" scope="row">
-                      {product.title}
+                      <strong>Total</strong>
                     </TableCell>
                     <TableCell>
-                      <Box fontWeight={500}>x{product.productQty}</Box>
+                      <PriceLabel value={total} />
                     </TableCell>
                   </TableRow>
-                ))}
-                <TableRow>
-                  <TableCell component="th" scope="row">
-                    <strong>Total</strong>
-                  </TableCell>
-                  <TableCell>
-                    <PriceLabel value={total} />
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
 
           {/* <CoupomLink /> */}
           <Button

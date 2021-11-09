@@ -11,7 +11,7 @@ import ButtonAction from "../../components/ButtonAction";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 
-import { ShoppingCart } from "@material-ui/icons";
+import { AddShoppingCart } from "@material-ui/icons";
 
 function ProductDetail() {
   // redux
@@ -95,7 +95,7 @@ function ProductDetail() {
             onClick={handleButtonAddCartClick}
             variant="contained"
             color="secondary"
-            startIcon={<ShoppingCart />}
+            endIcon={<AddShoppingCart />}
           >
             Adicionar ao Carrinho
           </Button>

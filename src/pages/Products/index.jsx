@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { generatePath, useHistory } from "react-router-dom";
 
@@ -12,18 +12,27 @@ import PriceLabel from "../../components/PriceLabel";
 import RatingLabel from "../../components/RatingLabel";
 
 import { useStyles } from "./styles";
+import LoadingScreen from "../../components/LoadingScreen";
 
 function Products() {
+  const history = useHistory();
+  const classes = useStyles();
+
   // redux
   const products = useSelector((state) => state.products.products);
   let inputSearchValue = useSelector(
     (state) => state.products.inputSearchValue
   );
 
-  const history = useHistory();
-  const classes = useStyles();
-
   const [switchMode, setSwitchMode] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   function handleClickProduct(product) {
     const id = product.id;
@@ -59,34 +68,39 @@ function Products() {
         }
         label="Mudar Visualização"
       />
-
-      {switchMode ? (
-        <Box
-          className={classes.section}
-          display="flex"
-          flexWrap="wrap"
-          justifyContent="space-around"
-          m={3}
-        >
-          {products
-            .filter((product) =>
-              renderFilteredProducts(inputSearchValue, product)
-            )
-            .map((product) =>
-              renderProductWithCard(product, handleClickProduct)
-            )}
-        </Box>
+      {loading ? (
+        <LoadingScreen />
       ) : (
-        <Box className={classes.section} m={3}>
-          <TableProducts
-            rows={products
-              .filter((product) =>
-                renderFilteredProducts(inputSearchValue, product)
-              )
-              .map((product) =>
-                renderProductWithList(product, handleClickProduct)
-              )}
-          ></TableProducts>
+        <Box>
+          {switchMode ? (
+            <Box
+              className={classes.section}
+              display="flex"
+              flexWrap="wrap"
+              justifyContent="space-around"
+              m={3}
+            >
+              {products
+                .filter((product) =>
+                  renderFilteredProducts(inputSearchValue, product)
+                )
+                .map((product) =>
+                  renderProductWithCard(product, handleClickProduct)
+                )}
+            </Box>
+          ) : (
+            <Box className={classes.section} m={3}>
+              <TableProducts
+                rows={products
+                  .filter((product) =>
+                    renderFilteredProducts(inputSearchValue, product)
+                  )
+                  .map((product) =>
+                    renderProductWithList(product, handleClickProduct)
+                  )}
+              ></TableProducts>
+            </Box>
+          )}
         </Box>
       )}
     </>

@@ -36,6 +36,9 @@ function Checkout() {
 
   async function handleClickRemoveProduct(product) {
     await dispatch(remove(product));
+    // <----------- ----------->
+    // resolver bug - ao remover produto, não esta removendo do carrinho
+
     // try {
     //   await localStorage.removeItem("shoppingCart");
     // } catch (error) {

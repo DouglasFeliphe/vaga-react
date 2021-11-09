@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
@@ -7,9 +8,11 @@ import Box from "@material-ui/core/Box";
 
 import ReactBodymovin from "react-bodymovin";
 import animation from "./1818-success-animation.json";
+import { clearShoppingCart } from "../../reducers/shoppingCartSlice";
 
 export default function ConfirmationPayment() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const bodymovinOptions = {
     loop: false,
@@ -18,6 +21,13 @@ export default function ConfirmationPayment() {
     prerender: true,
     animationData: animation,
   };
+
+  async function handleOkClick() {
+    await dispatch(clearShoppingCart());
+    await localStorage.removeItem("shoppingCart");
+    await localStorage.removeItem("shoppingCartQty");
+    history.push("/");
+  }
 
   return (
     <>
@@ -46,7 +56,7 @@ export default function ConfirmationPayment() {
         {/* <PriceLabel style={{fontSize: 44}} value='3.000' isLargeSize /> */}
 
         <Button
-          onClick={() => history.push("/")}
+          onClick={handleOkClick}
           variant="contained"
           color="secondary"
           aria-label="delete"
