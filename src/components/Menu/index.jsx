@@ -225,6 +225,10 @@ export default function PrimarySearchAppBar() {
             <Button onClick={() => history.push("/")} color="inherit">
               produtos
             </Button>
+            <Button onClick={() => history.push("/WishList")} color="inherit">
+              Lista de Desejos
+              <Icon>favorite</Icon>
+            </Button>
             <Button onClick={() => history.push("/checkout")} color="inherit">
               Carrinho
               <Badge badgeContent={qty} color="secondary">
