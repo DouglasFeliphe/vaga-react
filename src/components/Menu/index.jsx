@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import AppBar from "@material-ui/core/AppBar";
+import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -29,11 +30,14 @@ import { useStyles } from "./styles";
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
 
   // redux
   const qty = useSelector((state) => state.shoppingCart.qty);
+  const wishListQuantity = useSelector(
+    (state) => state.products.wishListQuantity
+  );
   const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
 
   // const [inputSearchValue, setInputSearchValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
@@ -155,7 +159,7 @@ export default function PrimarySearchAppBar() {
         Carrinho
       </MenuItem>
       {user.isLoggedIn ? (
-        <>
+        <Box>
           <MenuItem onClick={handleProfileMenuOpen}>
             <IconButton>
               <AccountCircle color="primary" />
@@ -168,7 +172,7 @@ export default function PrimarySearchAppBar() {
             </IconButton>
             <span>Sair</span>
           </MenuItem>
-        </>
+        </Box>
       ) : (
         <MenuItem onClick={() => history.push("/login")}>
           <IconButton>
@@ -225,10 +229,18 @@ export default function PrimarySearchAppBar() {
             <Button onClick={() => history.push("/")} color="inherit">
               produtos
             </Button>
+
             <Button onClick={() => history.push("/WishList")} color="inherit">
               Lista de Desejos
-              <Icon>favorite</Icon>
+              {wishListQuantity > 0 ? (
+                <Badge badgeContent={wishListQuantity} color="secondary">
+                  <Icon color="error">favorite</Icon>
+                </Badge>
+              ) : (
+                <Icon>favorite</Icon>
+              )}
             </Button>
+
             <Button onClick={() => history.push("/checkout")} color="inherit">
               Carrinho
               <Badge badgeContent={qty} color="secondary">

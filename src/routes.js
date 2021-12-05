@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Products from "./pages/Products";
+import WishList from "./pages/WishList";
 import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
@@ -25,6 +26,9 @@ const Routes = () => {
         </Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route path="/wishlist">
+          <WishList />
         </Route>
         <Route path="/checkout">
           <Checkout />

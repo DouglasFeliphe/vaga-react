@@ -6,10 +6,11 @@ import { setShoppingCart, remove } from "../../reducers/shoppingCartSlice";
 import Menu from "../../components/Menu";
 import TableProducts from "../../components/TableProducts";
 import PriceLabel from "../../components/PriceLabel";
-import EmptyCart from "../EmptyCart";
+import EmptyList from "../../components/EmptyList";
 
 import { TableCell, TableRow, Button, IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { RemoveShoppingCart } from "@material-ui/icons";
 
 const columns = ["Produto", "Imagem", "Descrição", "Preço", "Quantidade"];
 
@@ -31,6 +32,8 @@ function Checkout() {
       }
     }
 
+    console.log(`products`, products);
+
     loadShoppingCart();
   }, [dispatch]);
 
@@ -49,7 +52,6 @@ function Checkout() {
   return (
     <>
       <Menu />
-      {console.log(`products`, products)}
       {products.length ? (
         <TableProducts
           title="Checkout"
@@ -102,7 +104,11 @@ function Checkout() {
           }
         />
       ) : (
-        <EmptyCart />
+        <EmptyList
+          Icon={<RemoveShoppingCart />}
+          title="O carrinho está vazio."
+          description="Voce não adicionou nenhum produto no carrinho. Clique no botão abaixo para ver nossos produtos."
+        />
       )}
     </>
   );

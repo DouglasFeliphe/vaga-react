@@ -1,15 +1,14 @@
 import * as React from "react";
+import { memo } from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { generatePath, useHistory } from "react-router-dom";
 
 import { Box, Switch, FormControlLabel, Button } from "@material-ui/core";
-import { TableRow, TableCell } from "@material-ui/core";
+
 import Menu from "../../components/Menu";
 import TableProducts from "../../components/TableProducts";
-import ProductItemCard from "../../components/ProductItemCard";
-import PriceLabel from "../../components/PriceLabel";
-import RatingLabel from "../../components/RatingLabel";
+import ProductItem from "../../components/ProductItem";
 
 import { useStyles } from "./styles";
 import LoadingScreen from "../../components/LoadingScreen";
@@ -32,6 +31,7 @@ function Products() {
     setTimeout(() => {
       setLoading(false);
     }, 2000);
+    console.log("products", products);
   }, []);
 
   function handleClickProduct(product) {
@@ -44,6 +44,7 @@ function Products() {
       title: product.title,
       description: product.description,
       price: product.price,
+      discount: product.discount,
       ratingValue: product.ratingValue,
     });
   }
@@ -80,24 +81,22 @@ function Products() {
               justifyContent="space-around"
               m={3}
             >
-              {products
-                .filter((product) =>
-                  renderFilteredProducts(inputSearchValue, product)
-                )
-                .map((product) =>
-                  renderProductWithCard(product, handleClickProduct)
-                )}
+              {renderProducts(
+                "CARD",
+                products,
+                inputSearchValue,
+                handleClickProduct
+              )}
             </Box>
           ) : (
             <Box className={classes.section} m={3}>
               <TableProducts
-                rows={products
-                  .filter((product) =>
-                    renderFilteredProducts(inputSearchValue, product)
-                  )
-                  .map((product) =>
-                    renderProductWithList(product, handleClickProduct)
-                  )}
+                rows={renderProducts(
+                  "LIST",
+                  products,
+                  inputSearchValue,
+                  handleClickProduct
+                )}
               ></TableProducts>
             </Box>
           )}
@@ -107,46 +106,39 @@ function Products() {
   );
 }
 
-const renderProductWithCard = (product, handleClickProduct) => (
-  <ProductItemCard
-    key={product.id}
-    title={product.title}
-    subHeader={product.subHeader}
-    price={product.price}
-    image={product.image}
-    ratingValue={product.ratingValue}
-    onClick={() => handleClickProduct(product)}
-  />
-);
-
-const renderProductWithList = (product, handleClickProduct) => (
-  <TableRow key={product.id}>
-    <TableCell component="th" scope="row">
-      <strong>{product.title}</strong>
-    </TableCell>
-    <TableCell component="th" scope="row">
-      <img src={product.image} alt={product.title} width="200"></img>
-    </TableCell>
-    <TableCell component="th" scope="row">
-      {product.subHeader}
-    </TableCell>
-    <TableCell>
-      <PriceLabel value={product.price} />
-    </TableCell>
-    <TableCell>
-      <RatingLabel title="Avaliação" value={product.ratingValue} />
-    </TableCell>
-    <TableCell colSpan={2}>
-      <Button
-        onClick={() => handleClickProduct(product)}
-        variant="contained"
-        color="primary"
-      >
-        Ver
-      </Button>
-    </TableCell>
-  </TableRow>
-);
+/**
+ *
+ * @param {('CARD'|'LIST')} component
+ * @param {*} products
+ * @param {*} inputSearchValue
+ * @param {*} handleClickProduct
+ */
+function renderProducts(
+  component,
+  products,
+  inputSearchValue,
+  handleClickProduct
+) {
+  return products
+    .filter((product) => renderFilteredProducts(inputSearchValue, product))
+    .map(
+      (product) =>
+        (component === "CARD" && (
+          <ProductItem.Card
+            key={product.id}
+            product={product}
+            handleClickProduct={() => handleClickProduct(product)}
+          />
+        )) ||
+        (component === "LIST" && (
+          <ProductItem.List
+            key={product.id}
+            product={product}
+            handleClickProduct={() => handleClickProduct(product)}
+          />
+        ))
+    );
+}
 
 function renderFilteredProducts(inputSearchValue, product) {
   if (inputSearchValue === "") {
@@ -158,4 +150,4 @@ function renderFilteredProducts(inputSearchValue, product) {
   }
 }
 
-export default Products;
+export default memo(Products);

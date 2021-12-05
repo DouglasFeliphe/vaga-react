@@ -23,8 +23,11 @@ function ProductDetail() {
 
   const history = useHistory();
   const location = useLocation();
-  const { id, image, title, description, price, ratingValue } = location.state;
+  const { id, image, title, description, price, discount, ratingValue } =
+    location.state;
 
+  // converting to number
+  const priceNumber = parseFloat(price);
   useEffect(() => {
     localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
   }, [shoppingCart]);
@@ -45,6 +48,7 @@ function ProductDetail() {
         title,
         description,
         price,
+        discount,
         productQty,
         ratingValue,
       };
@@ -80,7 +84,7 @@ function ProductDetail() {
 
           <p>{description}</p>
 
-          <PriceLabel value={price} />
+          <PriceLabel value={priceNumber} discount={discount} />
 
           <RatingLabel title="Avaliação" value={ratingValue} />
 
