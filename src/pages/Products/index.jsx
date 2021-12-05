@@ -32,7 +32,7 @@ function Products() {
       setLoading(false);
     }, 2000);
     console.log("products", products);
-  }, []);
+  }, [products]);
 
   function handleClickProduct(product) {
     const id = product.id;

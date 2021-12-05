@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { add } from "../../reducers/shoppingCartSlice";
+import { useSelector } from "react-redux";
+// import { add } from "../../reducers/shoppingCartSlice";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
@@ -29,7 +29,7 @@ function Alert(props) {
 }
 
 function WishList() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // list of products in the wishlist from the redux store (state)
   const wishList = useSelector((state) =>
     state.products.products.filter((product) => product.isFavorite)
@@ -62,10 +62,10 @@ function WishList() {
     // await dispatch(remove(product));
   }
 
-  async function handleClickAddToCart(newState, product) {
-    await dispatch(add(product));
-    setState({ open: true, ...newState });
-  }
+  // async function handleClickAddToCart(newState, product) {
+  //   await dispatch(add(product));
+  //   setState({ open: true, ...newState });
+  // }
 
   return (
     <>
