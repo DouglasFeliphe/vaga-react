@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { generatePath, useHistory } from "react-router-dom";
 
-import { Box, Switch, FormControlLabel, Button } from "@material-ui/core";
+import { Box, Switch, FormControlLabel } from "@material-ui/core";
 
 import Menu from "../../components/Menu";
 import TableProducts from "../../components/TableProducts";

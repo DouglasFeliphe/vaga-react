@@ -35,7 +35,7 @@ function Checkout() {
     console.log(`products`, products);
 
     loadShoppingCart();
-  }, [dispatch]);
+  }, [dispatch, products]);
 
   async function handleClickRemoveProduct(product) {
     await dispatch(remove(product));
